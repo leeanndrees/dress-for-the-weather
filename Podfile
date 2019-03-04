@@ -6,7 +6,7 @@ target 'dressForTheWeather' do
   use_frameworks!
 
   # Pods for dressForTheWeather
-pod 'Firebase/Core'
+  pod 'Firebase/Core'
 
   target 'dressForTheWeatherTests' do
     inherit! :search_paths
