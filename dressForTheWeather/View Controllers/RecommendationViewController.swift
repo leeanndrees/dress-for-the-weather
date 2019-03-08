@@ -11,6 +11,7 @@ import UIKit
 class RecommendationViewController: UIViewController {
     // MARK: - Properties
     private var viewModel = RecommendationViewModel()
+    var temp: Int?
     
     // MARK: - IBOutlets
     @IBOutlet var tempLabel: UILabel!
@@ -19,9 +20,24 @@ class RecommendationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        WeatherNetworking().getWeather()
-        let rec = viewModel.generateRecommendation(for: 20, from: allClothingItems)
+        setTemp()
+        updateTempLabel()
+        let rec = viewModel.generateRecommendation(for: temp!, from: allClothingItems)
         let outfit = Outfit(components: rec)
-        print(outfitString(from: outfit))
+        updateRecLabel(with: outfitString(from: outfit))
+    }
+    
+    func setTemp() {
+        temp = 70
+    }
+    
+    func updateTempLabel() {
+        guard let temperature = temp else { return }
+        tempLabel.text = "\(temperature)°"
+    }
+    
+    func updateRecLabel(with text: String) {
+        recLabel.text = text
     }
 
 }
