@@ -25,7 +25,7 @@ class WeatherNetworking {
                 } else if let data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
-//                    self.updateSearchResults(data)
+                    let newWeatherData = self.converted(from: data)
                     DispatchQueue.main.async {
 //                        completion(self.tracks, self.errorMessage)
                     }
@@ -35,7 +35,15 @@ class WeatherNetworking {
         }
     }
 
-    
+    func converted(from data: Data) -> WeatherData? {
+        let decoder = JSONDecoder()
+        do {
+            let response = try decoder.decode(WeatherData.self, from: data)
+            return response
+        } catch {
+            return nil
+        }
+    }
     
     
 }
