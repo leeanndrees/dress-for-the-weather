@@ -11,13 +11,7 @@ import Foundation
 struct RecommendationViewModel {
     
     func generateRecommendation(for temp: Int) -> [ClothingItem] {
-        var recommendedItems: [ClothingItem] = []
-        for item in allClothingItems {
-            if item.tempRange.contains(temp) {
-                recommendedItems.append(item)
-            }
-        }
-        return recommendedItems
+        return allClothingItems.filter{ $0.tempRange.contains(temp) }
     }
     
 }
