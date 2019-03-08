@@ -9,12 +9,12 @@
 import UIKit
 
 class RecommendationViewController: UIViewController {
-//    private var viewModel: RecommendationViewModel
+    private var viewModel = RecommendationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        WeatherNetworking().getWeather()
-        let rec = RecommendationViewModel().generateRecommendation(for: 20, from: allClothingItems)
+        let rec = viewModel.generateRecommendation(for: 20, from: allClothingItems)
         let outfit = Outfit(components: rec)
         print(outfitString(from: outfit))
     }
