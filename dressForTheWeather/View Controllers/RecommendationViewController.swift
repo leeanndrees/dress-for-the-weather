@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RecommendationViewController: UIViewController {
+    private var viewModel: RecommendationViewModel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        print(outfitString(from: outfit1))
+
     }
 
 
