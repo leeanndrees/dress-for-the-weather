@@ -10,11 +10,19 @@
 		430A329A221F3CA0000AAE4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */; };
 		430A329B221F3CA0000AAE4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */; };
 		4342323A2215B89700304F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434232392215B89700304F6A /* AppDelegate.swift */; };
-		4342323C2215B89700304F6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342323B2215B89700304F6A /* ViewController.swift */; };
+		4342323C2215B89700304F6A /* RecommendationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342323B2215B89700304F6A /* RecommendationViewController.swift */; };
 		4342323F2215B89700304F6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4342323D2215B89700304F6A /* Main.storyboard */; };
 		434232412215B89700304F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434232402215B89700304F6A /* Assets.xcassets */; };
 		434232442215B89700304F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434232422215B89700304F6A /* LaunchScreen.storyboard */; };
 		4342324F2215B89800304F6A /* dressForTheWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342324E2215B89800304F6A /* dressForTheWeatherTests.swift */; };
+		4353901C22317C4200399216 /* ClothingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353901B22317C4200399216 /* ClothingItem.swift */; };
+		43539021223182AE00399216 /* TempClothingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43539020223182AE00399216 /* TempClothingData.swift */; };
+		435390232231837400399216 /* BodyPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390222231837400399216 /* BodyPlacement.swift */; };
+		435390252231840300399216 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390242231840300399216 /* Outfit.swift */; };
+		435390282231863400399216 /* OutfitStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390272231863400399216 /* OutfitStrings.swift */; };
+		4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390292231A5A300399216 /* RecommendationViewModel.swift */; };
+		4353902D2231AA3900399216 /* WeatherNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353902C2231AA3900399216 /* WeatherNetworking.swift */; };
+		435390522232C4E300399216 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390512232C4E300399216 /* Constants.swift */; };
 		D917E28FBBF82B710B78C875 /* Pods_dressForTheWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FB56631E16763C6B7EF16E /* Pods_dressForTheWeatherTests.framework */; };
 		E91F1BC0C132F19A30BB42B9 /* Pods_dressForTheWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D58CBE184CF32BD2B38184 /* Pods_dressForTheWeather.framework */; };
 /* End PBXBuildFile section */
@@ -34,7 +42,7 @@
 		430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		434232362215B89700304F6A /* dressForTheWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dressForTheWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		434232392215B89700304F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4342323B2215B89700304F6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4342323B2215B89700304F6A /* RecommendationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewController.swift; sourceTree = "<group>"; };
 		4342323E2215B89700304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		434232402215B89700304F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434232432215B89700304F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +50,14 @@
 		4342324A2215B89800304F6A /* dressForTheWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dressForTheWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4342324E2215B89800304F6A /* dressForTheWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dressForTheWeatherTests.swift; sourceTree = "<group>"; };
 		434232502215B89800304F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4353901B22317C4200399216 /* ClothingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingItem.swift; sourceTree = "<group>"; };
+		43539020223182AE00399216 /* TempClothingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClothingData.swift; sourceTree = "<group>"; };
+		435390222231837400399216 /* BodyPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPlacement.swift; sourceTree = "<group>"; };
+		435390242231840300399216 /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
+		435390272231863400399216 /* OutfitStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitStrings.swift; sourceTree = "<group>"; };
+		435390292231A5A300399216 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
+		4353902C2231AA3900399216 /* WeatherNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworking.swift; sourceTree = "<group>"; };
+		435390512232C4E300399216 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83DC88C46CFCD08D70549725 /* Pods-dressForTheWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dressForTheWeatherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dressForTheWeatherTests/Pods-dressForTheWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E0D23F411E75E292416E1A8 /* Pods-dressForTheWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dressForTheWeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dressForTheWeatherTests/Pods-dressForTheWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		99FB56631E16763C6B7EF16E /* Pods_dressForTheWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dressForTheWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,9 +108,11 @@
 		434232382215B89700304F6A /* dressForTheWeather */ = {
 			isa = PBXGroup;
 			children = (
+				4353901F2231827400399216 /* Models */,
+				435390262231862000399216 /* View Models */,
+				4353902B2231A62C00399216 /* View Controllers */,
 				434232392215B89700304F6A /* AppDelegate.swift */,
 				4342323D2215B89700304F6A /* Main.storyboard */,
-				4342323B2215B89700304F6A /* ViewController.swift */,
 				434232402215B89700304F6A /* Assets.xcassets */,
 				434232422215B89700304F6A /* LaunchScreen.storyboard */,
 				434232452215B89700304F6A /* Info.plist */,
@@ -110,6 +128,36 @@
 				434232502215B89800304F6A /* Info.plist */,
 			);
 			path = dressForTheWeatherTests;
+			sourceTree = "<group>";
+		};
+		4353901F2231827400399216 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4353901B22317C4200399216 /* ClothingItem.swift */,
+				435390512232C4E300399216 /* Constants.swift */,
+				43539020223182AE00399216 /* TempClothingData.swift */,
+				435390222231837400399216 /* BodyPlacement.swift */,
+				435390242231840300399216 /* Outfit.swift */,
+				4353902C2231AA3900399216 /* WeatherNetworking.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		435390262231862000399216 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				435390272231863400399216 /* OutfitStrings.swift */,
+				435390292231A5A300399216 /* RecommendationViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		4353902B2231A62C00399216 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4342323B2215B89700304F6A /* RecommendationViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		5108107534FA2FC72FE22212 /* Frameworks */ = {
@@ -309,7 +357,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4342323C2215B89700304F6A /* ViewController.swift in Sources */,
+				435390232231837400399216 /* BodyPlacement.swift in Sources */,
+				4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */,
+				4353901C22317C4200399216 /* ClothingItem.swift in Sources */,
+				435390252231840300399216 /* Outfit.swift in Sources */,
+				43539021223182AE00399216 /* TempClothingData.swift in Sources */,
+				435390522232C4E300399216 /* Constants.swift in Sources */,
+				4353902D2231AA3900399216 /* WeatherNetworking.swift in Sources */,
+				435390282231863400399216 /* OutfitStrings.swift in Sources */,
+				4342323C2215B89700304F6A /* RecommendationViewController.swift in Sources */,
 				4342323A2215B89700304F6A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

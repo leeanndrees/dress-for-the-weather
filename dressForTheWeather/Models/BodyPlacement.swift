@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+enum bodyPlacement {
+    case head
+    case torso
+    case legs
+    case feet
+    case hands
+    case neck
+}

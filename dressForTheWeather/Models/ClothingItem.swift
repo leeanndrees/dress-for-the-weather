@@ -8,19 +8,26 @@
 
 import Foundation
 
-struct ClothingItem {
+class ClothingItem {
     var name: String
-    var placement: String
+    var placement: [bodyPlacement]
     var tempRange: ClosedRange<Int>
-    var descriptors: [String]?
     
-    mutating func tooCold() {
+    init(name: String, placement: [bodyPlacement], tempRange: ClosedRange<Int>) {
+        self.name = name
+        self.placement = placement
+        self.tempRange = tempRange
+    }
+    
+    func tooCold() {
         let newLowerBound = tempRange.lowerBound + 5
         self.tempRange = newLowerBound...self.tempRange.upperBound
     }
     
-    mutating func tooHot() {
+    func tooHot() {
         let newUpperBound = tempRange.upperBound - 5
         self.tempRange = self.tempRange.lowerBound...newUpperBound
     }
 }
+
+
