@@ -9,8 +9,13 @@
 import UIKit
 
 class RecommendationViewController: UIViewController {
+    // MARK: - Properties
     private var viewModel = RecommendationViewModel()
-
+    
+    // MARK: - IBOutlets
+    @IBOutlet var tempLabel: UILabel!
+    @IBOutlet var recLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        WeatherNetworking().getWeather()
