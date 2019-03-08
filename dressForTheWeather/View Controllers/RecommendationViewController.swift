@@ -14,7 +14,7 @@ class RecommendationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        WeatherNetworking().getWeather()
-        let rec = RecommendationViewModel().generateRecommendation(for: 20)
+        let rec = RecommendationViewModel().generateRecommendation(for: 20, from: allClothingItems)
         let outfit = Outfit(components: rec)
         print(outfitString(from: outfit))
     }

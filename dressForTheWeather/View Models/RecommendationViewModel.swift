@@ -10,8 +10,8 @@ import Foundation
 
 struct RecommendationViewModel {
     
-    func generateRecommendation(for temp: Int) -> [ClothingItem] {
-        return allClothingItems.filter{ $0.tempRange.contains(temp) }
+    func generateRecommendation(for temp: Int, from items: [ClothingItem]) -> [ClothingItem] {
+        return items.filter{ $0.tempRange.contains(temp) }
     }
     
 }
