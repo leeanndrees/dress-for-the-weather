@@ -15,9 +15,11 @@ class WeatherNetworking {
     
     func getWeather() {
         dataTask?.cancel()
-        if var urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/37.8267,-122.4233") {
+        
+        if var urlComponents = URLComponents(string: "https://api.darksky.net/forecast/e3c6c3f5254ee83b29cf829a4eee5c46/37.8267,-122.4233") {
 //            urlComponents.query = "media=music&entity=song&term=\(searchTerm)"
             guard let url = urlComponents.url else { return }
+            
             dataTask = weatherSession.dataTask(with: url) { data, response, error in
                 defer { self.dataTask = nil }
                 if let error = error {
@@ -25,12 +27,14 @@ class WeatherNetworking {
                 } else if let data = data,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
+                    
                     let newWeatherData = self.converted(from: data)
                     DispatchQueue.main.async {
 //                        completion(self.tracks, self.errorMessage)
                     }
                 }
             }
+            
             dataTask?.resume()
         }
     }
