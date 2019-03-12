@@ -15,7 +15,7 @@ class WeatherNetworking {
     
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
-    static private var apiKey = "e3c6c3f5254ee83b29cf829a4eee5c46" // ignore this
+    static private var apiKey = "" // add back in apikey
     
     // MARK: - Methods
     
