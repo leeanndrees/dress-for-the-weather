@@ -8,37 +8,54 @@
 
 import UIKit
 
-class RecommendationViewController: UIViewController {
+final class RecommendationViewController: UIViewController {
+    
     // MARK: - Properties
-    private var viewModel = RecommendationViewModel()
-    var temp: Int?
+    
+    private var viewModel: RecommendationViewModel!
     
     // MARK: - IBOutlets
+    
     @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var recLabel: UILabel!
+    @IBOutlet var recommendationLabel: UILabel!
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//       WeatherNetworking().getWeather()
-        setTemp()
-        updateTempLabel()
-        let rec = viewModel.generateRecommendation(for: temp!, from: allClothingItems)
-        let outfit = Outfit(components: rec)
-        updateRecLabel(with: outfitString(from: outfit))
+        
+        viewModel = RecommendationViewModel(delegate: self)
+        viewModel.getWeather()
     }
     
-    func setTemp() {
-        temp = 70
+    // MARK: - Methods
+    
+    private func updateTempLabel() {
+        if let temperature = viewModel.temperature {
+            tempLabel.text = "Temperature: \(temperature)"
+        } else {
+            tempLabel.text = "Temperature is Not Currently Available"
+        }
     }
     
-    func updateTempLabel() {
-        guard let temperature = temp else { return }
-        tempLabel.text = "\(temperature)°"
-    }
-    
-    func updateRecLabel(with text: String) {
-        recLabel.text = text
+    private func updateRecommendationLabel() {
+        recommendationLabel.text = "Recommended outfit: \(viewModel.recommendations)"
     }
 
 }
 
+extension RecommendationViewController: RecommendationViewDelegate {
+    
+    func didGetRecommendations() {
+        DispatchQueue.main.async {
+            self.updateRecommendationLabel()
+        }
+    }
+    
+    func didGetWeather() {
+        DispatchQueue.main.async {
+            self.updateTempLabel()
+        }
+    }
+    
+}

@@ -10,10 +10,10 @@ import Foundation
 
 class ClothingItem {
     var name: String
-    var placement: [bodyPlacement]
-    var tempRange: ClosedRange<Int>
+    var placement: [BodyPlacement]
+    var tempRange: ClosedRange<Double>
     
-    init(name: String, placement: [bodyPlacement], tempRange: ClosedRange<Int>) {
+    init(name: String, placement: [BodyPlacement], tempRange: ClosedRange<Double>) {
         self.name = name
         self.placement = placement
         self.tempRange = tempRange
@@ -29,5 +29,3 @@ class ClothingItem {
         self.tempRange = self.tempRange.lowerBound...newUpperBound
     }
 }
-
-

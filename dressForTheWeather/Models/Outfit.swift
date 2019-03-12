@@ -9,7 +9,12 @@
 import Foundation
 
 struct Outfit {
+    
     var components: [ClothingItem]
+    
+    func outfitString() -> String {
+        let componentNames: [String] = components.map { $0.name }
+        return componentNames.joined(separator: ", ")
+    }
+    
 }
-
-

@@ -10,44 +10,43 @@ import Foundation
 import UIKit
 
 class WeatherNetworking {
-    let weatherSession = URLSession(configuration: .default)
-    var dataTask: URLSessionDataTask?
     
-    func getWeather() {
+    // MARK: - Properties
+    
+    static let weatherSession = URLSession(configuration: .default)
+    static var dataTask: URLSessionDataTask?
+    static private var apiKey = "e3c6c3f5254ee83b29cf829a4eee5c46" // ignore this
+    
+    // MARK: - Methods
+    
+    static func getWeather(completion: (@escaping (WeatherData) -> Void)) {
         dataTask?.cancel()
         
-        if var urlComponents = URLComponents(string: "https://api.darksky.net/forecast/e3c6c3f5254ee83b29cf829a4eee5c46/37.8267,-122.4233") {
-//            urlComponents.query = "media=music&entity=song&term=\(searchTerm)"
-            guard let url = urlComponents.url else { return }
+        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(apiKey)/37.8267,-122.4233"),
+              let url = urlComponents.url else { return }
+        
+        dataTask = weatherSession.dataTask(with: url) { data, response, error in
+            defer { self.dataTask = nil }
             
-            dataTask = weatherSession.dataTask(with: url) { data, response, error in
-                defer { self.dataTask = nil }
-                if let error = error {
-//                    self.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
-                } else if let data = data,
-                    let response = response as? HTTPURLResponse,
-                    response.statusCode == 200 {
-                    
-                    let newWeatherData = self.converted(from: data)
-                    DispatchQueue.main.async {
-//                        completion(self.tracks, self.errorMessage)
-                    }
-                }
+            if let error = error {
+                print("DataTask error: " + error.localizedDescription + "\n")
+            } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                guard let newWeatherData = self.converted(from: data) else { return }
+                completion(newWeatherData)
             }
-            
-            dataTask?.resume()
         }
+        
+        dataTask?.resume()
     }
 
-    func converted(from data: Data) -> WeatherData? {
+    static private func converted(from data: Data) -> WeatherData? {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(WeatherData.self, from: data)
             return response
         } catch {
-            return nil
+            return nil // TODO: add error handling
         }
     }
-    
     
 }
