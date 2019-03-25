@@ -25,11 +25,7 @@ class RecommendationViewController: UIViewController {
         
         viewModel = RecommendationViewModel(delegate: self)
         viewModel.getTemperature()
-        viewModel.getRecommendation()
-//        setTemp()
-//        let rec = viewModel.generateRecommendation(for: temp!, from: allClothingItems)
-//        let outfit = Outfit(components: rec)
-//        updateRecLabel(with: outfitString(from: outfit))
+//        viewModel.getRecommendation()
     }
     
     // MARK: - Methods
@@ -51,6 +47,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetWeather() {
         DispatchQueue.main.async {
             self.updateTempLabel()
+            self.viewModel.getRecommendation()
         }
     }
     
