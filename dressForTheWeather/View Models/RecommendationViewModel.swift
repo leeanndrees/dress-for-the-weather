@@ -30,15 +30,15 @@ class RecommendationViewModel {
     
     // MARK: - Methods
     
-    func generateRecommendation(for temp: Int, from items: [ClothingItem]) -> [ClothingItem] {
-        return items.filter{ $0.tempRange.contains(temp) }
-    }
-    
     func getTemperature() {
         WeatherNetworking.getWeather { data in
             self.temperature = data.currently.temperature
             self.delegate?.didGetWeather()
         }
+    }
+    
+    func generateRecommendation(for temp: Int, from items: [ClothingItem]) -> [ClothingItem] {
+        return items.filter{ $0.tempRange.contains(temp) }
     }
     
     func getRecommendation() {
@@ -49,8 +49,5 @@ class RecommendationViewModel {
         self.recommendation = outfitString(from: outfit)
         self.delegate?.didGetRecommendation()
     }
-    
-    
-    
     
 }
