@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 35
-//        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
         
         return true
@@ -51,6 +51,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("didFailWithError \(error)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let newLocation = locations.last!
+//        location = newLocation
+//        lat = location?.coordinate.latitude
+//        lon = location?.coordinate.longitude
+//        updateLabels()
+//        setIcon()
+    }
+}
