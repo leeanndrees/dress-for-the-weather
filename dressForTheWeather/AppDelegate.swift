@@ -6,6 +6,7 @@
 //  Copyright © 2019 DetroitLabs. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
 import Firebase
 
@@ -13,11 +14,18 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    let locationManager = CLLocationManager()
+    static let geoCoder = CLGeocoder()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 35
+//        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.startUpdatingLocation()
+        
         return true
     }
 

@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses your location to get the weather forecast for your area.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to get the weather forecast for your area.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
