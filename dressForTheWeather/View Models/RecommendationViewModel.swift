@@ -19,8 +19,17 @@ class RecommendationViewModel {
     // MARK: - Properties
     
     weak var delegate: RecommendationViewDelegate?
-    var temperature: Double?
-    var recommendation: String?
+    var temperature: Double? {
+        didSet {
+            delegate?.didGetWeather()
+            getRecommendation()
+        }
+    }
+    var recommendation: String? {
+        didSet {
+            delegate?.didGetRecommendation()
+        }
+    }
     
     // MARK: - Initializer
     

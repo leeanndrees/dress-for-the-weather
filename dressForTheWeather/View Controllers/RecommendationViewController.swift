@@ -22,10 +22,8 @@ class RecommendationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel = RecommendationViewModel(delegate: self)
         viewModel.getTemperature()
-//        viewModel.getRecommendation()
     }
     
     // MARK: - Methods
@@ -47,7 +45,6 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetWeather() {
         DispatchQueue.main.async {
             self.updateTempLabel()
-            self.viewModel.getRecommendation()
         }
     }
     
