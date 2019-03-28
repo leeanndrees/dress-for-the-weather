@@ -15,7 +15,12 @@ final class WeatherNetworking {
     
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
+<<<<<<< HEAD:dressForTheWeather/WeatherNetworking.swift
     static private var apiKey = "e3c6c3f5254ee83b29cf829a4eee5c46" // add back in apikey
+=======
+    
+    static private var apiKey = "" // add back in apikey
+>>>>>>> e624a21141d4d6fd05565ad548afb94065f48774:dressForTheWeather/Models/WeatherNetworking.swift
     
     // MARK: - Methods
     
