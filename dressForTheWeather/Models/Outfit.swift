@@ -11,5 +11,3 @@ import Foundation
 struct Outfit {
     var components: [ClothingItem]
 }
-
-

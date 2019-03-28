@@ -19,8 +19,16 @@ class RecommendationViewModel {
     // MARK: - Properties
     
     weak var delegate: RecommendationViewDelegate?
-    var temperature: Double?
-    var recommendation: String?
+    var temperature: Double? {
+        didSet {
+            delegate?.didGetWeather()
+        }
+    }
+    var recommendation: String? {
+        didSet {
+            delegate?.didGetRecommendation()
+        }
+    }
     
     // MARK: - Initializer
     
@@ -33,21 +41,25 @@ class RecommendationViewModel {
     func getTemperature() {
         WeatherNetworking.getWeather { data in
             self.temperature = data.currently.temperature
-            self.delegate?.didGetWeather()
+//            self.delegate?.didGetWeather() Could move into didSet
         }
     }
     
+    // Is there a reason the temp param is an int instead of a double?
     func generateRecommendation(for temp: Int, from items: [ClothingItem]) -> [ClothingItem] {
         return items.filter{ $0.tempRange.contains(temp) }
     }
     
     func getRecommendation() {
-        guard let temp = self.temperature else { print ("no temp"); return }
-        let tempInt = Int(temp)
+        guard let temp = temperature else { // could remove self. from temperature
+            print("no temp")
+            return
+        }
+        let tempInt = Int(temp) // if the param is changed to int wont need to cast
         let recommendedItems = generateRecommendation(for: tempInt, from: allClothingItems)
         let outfit = Outfit(components: recommendedItems)
-        self.recommendation = outfitString(from: outfit)
-        self.delegate?.didGetRecommendation()
+        recommendation = outfitString(from: outfit) // could remove self. from self.recommentation
+//        self.delegate?.didGetRecommendation() Could move into didSet
     }
     
 }

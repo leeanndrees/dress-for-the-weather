@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Enums should be capitalized: BodyPlacement
 enum bodyPlacement {
     case head
     case torso

@@ -22,8 +22,8 @@
 		435390282231863400399216 /* OutfitStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390272231863400399216 /* OutfitStrings.swift */; };
 		4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390292231A5A300399216 /* RecommendationViewModel.swift */; };
 		4353902D2231AA3900399216 /* WeatherNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353902C2231AA3900399216 /* WeatherNetworking.swift */; };
-		435390522232C4E300399216 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390512232C4E300399216 /* Constants.swift */; };
 		435390542232E91400399216 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390532232E91400399216 /* WeatherData.swift */; };
+		7345049F224D15C000090FF8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345049E224D15C000090FF8 /* Constants.swift */; };
 		D917E28FBBF82B710B78C875 /* Pods_dressForTheWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FB56631E16763C6B7EF16E /* Pods_dressForTheWeatherTests.framework */; };
 		E91F1BC0C132F19A30BB42B9 /* Pods_dressForTheWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D58CBE184CF32BD2B38184 /* Pods_dressForTheWeather.framework */; };
 /* End PBXBuildFile section */
@@ -58,8 +58,8 @@
 		435390272231863400399216 /* OutfitStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitStrings.swift; sourceTree = "<group>"; };
 		435390292231A5A300399216 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
 		4353902C2231AA3900399216 /* WeatherNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworking.swift; sourceTree = "<group>"; };
-		435390512232C4E300399216 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		435390532232E91400399216 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		7345049E224D15C000090FF8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		83DC88C46CFCD08D70549725 /* Pods-dressForTheWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dressForTheWeatherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dressForTheWeatherTests/Pods-dressForTheWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E0D23F411E75E292416E1A8 /* Pods-dressForTheWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dressForTheWeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dressForTheWeatherTests/Pods-dressForTheWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		99FB56631E16763C6B7EF16E /* Pods_dressForTheWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dressForTheWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,12 +136,12 @@
 			isa = PBXGroup;
 			children = (
 				4353901B22317C4200399216 /* ClothingItem.swift */,
-				435390512232C4E300399216 /* Constants.swift */,
 				43539020223182AE00399216 /* TempClothingData.swift */,
 				435390222231837400399216 /* BodyPlacement.swift */,
 				435390242231840300399216 /* Outfit.swift */,
 				435390532232E91400399216 /* WeatherData.swift */,
 				4353902C2231AA3900399216 /* WeatherNetworking.swift */,
+				7345049E224D15C000090FF8 /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -361,12 +361,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				435390232231837400399216 /* BodyPlacement.swift in Sources */,
+				7345049F224D15C000090FF8 /* Constants.swift in Sources */,
 				4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */,
 				4353901C22317C4200399216 /* ClothingItem.swift in Sources */,
 				435390252231840300399216 /* Outfit.swift in Sources */,
 				43539021223182AE00399216 /* TempClothingData.swift in Sources */,
 				435390542232E91400399216 /* WeatherData.swift in Sources */,
-				435390522232C4E300399216 /* Constants.swift in Sources */,
 				4353902D2231AA3900399216 /* WeatherNetworking.swift in Sources */,
 				435390282231863400399216 /* OutfitStrings.swift in Sources */,
 				4342323C2215B89700304F6A /* RecommendationViewController.swift in Sources */,
