@@ -30,6 +30,10 @@ class RecommendationViewModel {
     
     // MARK: - Methods
     
+    func getLocation() {
+        
+    }
+    
     func getTemperature() {
         WeatherNetworking.getWeather { data in
             self.temperature = data.currently.temperature

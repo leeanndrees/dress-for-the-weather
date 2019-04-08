@@ -58,11 +58,18 @@ extension AppDelegate: CLLocationManagerDelegate {
         print("didFailWithError \(error)")
     }
 
+    // TO DO: break this out into its own object
+    // in the view model, get lat + long from Location Manager
+    // pass coordinates to weather API call
+    // call weather API call when the location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let newLocation = locations.last!
-//        location = newLocation
-//        lat = location?.coordinate.latitude
-//        lon = location?.coordinate.longitude
+        var lat: Double?
+        var long: Double?
+        var location: CLLocation?
+        let newLocation = locations.last!
+        location = newLocation
+        lat = location?.coordinate.latitude
+        long = location?.coordinate.longitude
 //        updateLabels()
 //        setIcon()
     }
