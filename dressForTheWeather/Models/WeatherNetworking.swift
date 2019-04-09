@@ -18,11 +18,11 @@ final class WeatherNetworking {
     
     // MARK: - Methods
     
-    static func getWeather(completion: (@escaping (WeatherData) -> Void)) {
+    static func getWeather(lat: Double, long: Double, completion: (@escaping (WeatherData) -> Void)) {
         dataTask?.cancel()
         
-        let latitude = "42.331551"
-        let longitude = "-83.046640"
+        let latitude = lat
+        let longitude = long
         
         guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/\(latitude),\(longitude)"), let url = urlComponents.url else { return }
         

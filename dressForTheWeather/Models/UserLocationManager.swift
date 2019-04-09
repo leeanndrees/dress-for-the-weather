@@ -9,13 +9,15 @@
 import CoreLocation
 import Foundation
 
-class UserLocationManager {
-    public var shared: CLLocationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        
-        return locationManager
-    }()
+class UserLocationManager: CLLocationManager, CLLocationManagerDelegate {
+
+    static let shared = UserLocationManager()
     
-    public var sharedLocation: CLLocation?
+    var locations = [CLLocation]()
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for location in locations {
+            self.locations.append(location)
+        }
+    }
 }

@@ -24,7 +24,8 @@ class RecommendationViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = RecommendationViewModel(delegate: self)
-        viewModel.getTemperature()
+        viewModel.locate()
+//        viewModel.getLocation()
 //        viewModel.getRecommendation()
     }
     

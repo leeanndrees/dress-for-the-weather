@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // MARK: - Delegate Protocol
 protocol RecommendationViewDelegate: AnyObject {
@@ -14,13 +15,15 @@ protocol RecommendationViewDelegate: AnyObject {
     func didGetRecommendation()
 }
 
-class RecommendationViewModel {
+class RecommendationViewModel: NSObject {
     
     // MARK: - Properties
     
     weak var delegate: RecommendationViewDelegate?
     var temperature: Double?
     var recommendation: String?
+    var location: CLLocation?
+    let locationManager = CLLocationManager()
     
     // MARK: - Initializer
     
@@ -30,12 +33,14 @@ class RecommendationViewModel {
     
     // MARK: - Methods
     
-    func getLocation() {
-        
+    func locate() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestLocation()
     }
     
-    func getTemperature() {
-        WeatherNetworking.getWeather { data in
+    func getTemperature(lat: Double, long: Double) {
+        WeatherNetworking.getWeather(lat: lat, long: long) { data in
             self.temperature = data.currently.temperature
             self.delegate?.didGetWeather()
         }
@@ -54,4 +59,24 @@ class RecommendationViewModel {
         self.delegate?.didGetRecommendation()
     }
     
+}
+
+extension RecommendationViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("didFailWithError \(error)")
+    }
+    
+    // TO DO: break this out into its own object
+    // in the view model, get lat + long from Location Manager
+    // pass coordinates to weather API call
+    // call weather API call when the location updates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var location: CLLocation?
+        let newLocation = locations.last!
+        location = newLocation
+        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { print("ahh"); return }
+        getTemperature(lat: lat, long: long)
+        //        updateLabels()
+        //        setIcon()
+    }
 }
