@@ -25,15 +25,13 @@ class RecommendationViewController: UIViewController {
         
         viewModel = RecommendationViewModel(delegate: self)
         viewModel.locate()
-//        viewModel.getLocation()
-//        viewModel.getRecommendation()
     }
     
     // MARK: - Methods
     
     func updateTempLabel() {
         guard let temperature = viewModel.temperature else { return }
-        tempLabel.text = "\(temperature)°"
+        tempLabel.text = String(format: "%.0f", temperature)
     }
     
     func updateRecLabel(with text: String) {
