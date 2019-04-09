@@ -23,7 +23,7 @@ class RecommendationViewModel: NSObject {
     var temperature: Double?
     var recommendation: String?
     var location: CLLocation?
-    let locationManager = CLLocationManager()
+    let locationManager = UserLocationManager.shared
     
     // MARK: - Initializer
     
@@ -76,7 +76,5 @@ extension RecommendationViewModel: CLLocationManagerDelegate {
         location = newLocation
         guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { print("ahh"); return }
         getTemperature(lat: lat, long: long)
-        //        updateLabels()
-        //        setIcon()
     }
 }
