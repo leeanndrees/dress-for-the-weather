@@ -22,7 +22,6 @@ class RecommendationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel = RecommendationViewModel(delegate: self)
         viewModel.locate()
     }

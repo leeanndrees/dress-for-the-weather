@@ -15,9 +15,9 @@ class UserLocationManager: CLLocationManager, CLLocationManagerDelegate {
     
     var locations = [CLLocation]()
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for location in locations {
-            self.locations.append(location)
-        }
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        for location in locations {
+//            self.locations.append(location)
+//        }
+//    }
 }

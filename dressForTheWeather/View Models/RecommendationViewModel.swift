@@ -71,10 +71,9 @@ extension RecommendationViewModel: CLLocationManagerDelegate {
     // pass coordinates to weather API call
     // call weather API call when the location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var location: CLLocation?
-        let newLocation = locations.last!
+        let newLocation = locations.last! // TODO: don't force unwrap
         location = newLocation
-        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { print("ahh"); return }
+        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { return }
         getTemperature(lat: lat, long: long)
     }
 }
