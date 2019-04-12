@@ -29,7 +29,7 @@ class RecommendationViewModel: NSObject {
     
     init(delegate: RecommendationViewDelegate) {
         self.delegate = delegate
-        super.init()
+        super.init() // is this right/ok? I had to do it to be able to set the delegate below
         locationManager.delegate = self
     }
     

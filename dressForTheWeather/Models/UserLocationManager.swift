@@ -38,7 +38,6 @@ class UserLocationManager: NSObject {
 }
 
 extension UserLocationManager: CLLocationManagerDelegate {
-    //locationManager.requestAlwaysAuthorization()
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("didFailWithError \(error)")
