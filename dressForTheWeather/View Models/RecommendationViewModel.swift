@@ -23,7 +23,7 @@ class RecommendationViewModel: NSObject {
     var temperature: Double?
     var recommendation: String?
     var location: CLLocation?
-    let locationManager = UserLocationManager.shared
+    let locationManager = UserLocationManager()
     
     // MARK: - Initializer
     
@@ -34,9 +34,10 @@ class RecommendationViewModel: NSObject {
     // MARK: - Methods
     
     func locate() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestLocation()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        locationManager.requestLocation()
     }
     
     func getTemperature(lat: Double, long: Double) {
@@ -61,19 +62,19 @@ class RecommendationViewModel: NSObject {
     
 }
 
-extension RecommendationViewModel: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("didFailWithError \(error)")
-    }
-    
-    // TO DO: break this out into its own object
-    // in the view model, get lat + long from Location Manager
-    // pass coordinates to weather API call
-    // call weather API call when the location updates
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let newLocation = locations.last! // TODO: don't force unwrap
-        location = newLocation
-        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { return }
-        getTemperature(lat: lat, long: long)
-    }
-}
+//extension RecommendationViewModel: CLLocationManagerDelegate {
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("didFailWithError \(error)")
+//    }
+//
+//    // TO DO: break this out into its own object
+//    // in the view model, get lat + long from Location Manager
+//    // pass coordinates to weather API call
+//    // call weather API call when the location updates
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let newLocation = locations.last! // TODO: don't force unwrap
+//        location = newLocation
+//        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { return }
+//        getTemperature(lat: lat, long: long)
+//    }
+//}
