@@ -9,7 +9,14 @@
 import CoreLocation
 import Foundation
 
+protocol UserLocationManagerDelegate: AnyObject {
+    func didGetLocation()
+}
+
 class UserLocationManager: NSObject {
+    
+    public var location: CLLocation?
+    weak var delegate: UserLocationManagerDelegate?
     
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
@@ -37,19 +44,10 @@ extension UserLocationManager: CLLocationManagerDelegate {
         print("didFailWithError \(error)")
     }
     
-    // TO DO: break this out into its own object
-    // in the view model, get lat + long from Location Manager
-    // pass coordinates to weather API call
-    // call weather API call when the location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        var location: CLLocation?
         let newLocation = locations.last!
         location = newLocation
-        
-        print("new location: \(newLocation)")
-        //        updateLabels()
-        //        setIcon()
+        delegate?.didGetLocation()
     }
 
 }
