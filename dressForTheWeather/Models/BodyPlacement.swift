@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum bodyPlacement {
+enum BodyPlacement {
     case head
     case torso
     case legs

@@ -16,53 +16,53 @@ protocol RecommendationViewDelegate: AnyObject {
 }
 
 class RecommendationViewModel: NSObject {
-    
+
     // MARK: - Properties
-    
+
     weak var delegate: RecommendationViewDelegate?
     var temperature: Double?
     var recommendation: String?
     var location: CLLocation?
     let locationManager = UserLocationManager()
-    
+
     // MARK: - Initializer
-    
+
     init(delegate: RecommendationViewDelegate) {
         self.delegate = delegate
         super.init() // is this right/ok? I had to do it to be able to set the delegate below
         locationManager.delegate = self
     }
-    
+
     // MARK: - Methods
-    
+
     func locate() {
         locationManager.requestLocation()
     }
-    
+
     func setLocation() {
         location = locationManager.location
     }
-    
+
     func getTemperature(lat: Double, long: Double) {
         WeatherNetworking.getWeather(lat: lat, long: long) { data in
             self.temperature = data.currently.temperature
-            self.delegate?.didGetWeather()
         }
     }
-    
-    func generateRecommendation(for temp: Int, from items: [ClothingItem]) -> [ClothingItem] {
+
+    func generateRecommendation(for temp: Double, from items: [ClothingItem]) -> [ClothingItem] {
         return items.filter{ $0.tempRange.contains(temp) }
     }
-    
+
     func getRecommendation() {
-        guard let temp = self.temperature else { print ("no temp"); return }
-        let tempInt = Int(temp)
-        let recommendedItems = generateRecommendation(for: tempInt, from: allClothingItems)
+        guard let temp = temperature else {
+            print("no temp")
+            return
+        }
+        let recommendedItems = generateRecommendation(for: temp, from: allClothingItems)
         let outfit = Outfit(components: recommendedItems)
-        self.recommendation = outfitString(from: outfit)
-        self.delegate?.didGetRecommendation()
+        recommendation = outfitString(from: outfit)
     }
-    
+
 }
 
 extension RecommendationViewModel: UserLocationManagerDelegate {
