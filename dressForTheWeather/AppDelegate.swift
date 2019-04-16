@@ -14,15 +14,9 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-//    let locationManager = UserLocationManager()
-//    static let geoCoder = CLGeocoder()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-
-//        locationManager.requestAuthorization()
-        
         return true
     }
 
