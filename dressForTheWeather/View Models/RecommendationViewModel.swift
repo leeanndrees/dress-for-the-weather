@@ -55,8 +55,6 @@ final class RecommendationViewModel {
         getLocation()
     }
     
-    // MARK: - Private Methods
-    
     private func getLocation() {
         userLocationManager.getLocation()
     }
