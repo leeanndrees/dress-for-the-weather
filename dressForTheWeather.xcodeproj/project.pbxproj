@@ -18,7 +18,6 @@
 		4353901C22317C4200399216 /* ClothingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353901B22317C4200399216 /* ClothingItem.swift */; };
 		43539021223182AE00399216 /* TempClothingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43539020223182AE00399216 /* TempClothingData.swift */; };
 		435390232231837400399216 /* BodyPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390222231837400399216 /* BodyPlacement.swift */; };
-		435390252231840300399216 /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390242231840300399216 /* Outfit.swift */; };
 		4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390292231A5A300399216 /* RecommendationViewModel.swift */; };
 		435390542232E91400399216 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390532232E91400399216 /* WeatherData.swift */; };
 		43D83926224D55D500128563 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D83925224D55D500128563 /* UserLocationManager.swift */; };
@@ -54,7 +53,6 @@
 		4353901B22317C4200399216 /* ClothingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingItem.swift; sourceTree = "<group>"; };
 		43539020223182AE00399216 /* TempClothingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempClothingData.swift; sourceTree = "<group>"; };
 		435390222231837400399216 /* BodyPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPlacement.swift; sourceTree = "<group>"; };
-		435390242231840300399216 /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		435390292231A5A300399216 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
 		435390532232E91400399216 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		43D83925224D55D500128563 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				4353901B22317C4200399216 /* ClothingItem.swift */,
 				43539020223182AE00399216 /* TempClothingData.swift */,
 				435390222231837400399216 /* BodyPlacement.swift */,
-				435390242231840300399216 /* Outfit.swift */,
 				435390532232E91400399216 /* WeatherData.swift */,
 			);
 			path = Models;
@@ -372,7 +369,6 @@
 				4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */,
 				734EBDF122370D2F0091AE1A /* Router.swift in Sources */,
 				4353901C22317C4200399216 /* ClothingItem.swift in Sources */,
-				435390252231840300399216 /* Outfit.swift in Sources */,
 				43539021223182AE00399216 /* TempClothingData.swift in Sources */,
 				435390542232E91400399216 /* WeatherData.swift in Sources */,
 				4342323C2215B89700304F6A /* RecommendationViewController.swift in Sources */,
