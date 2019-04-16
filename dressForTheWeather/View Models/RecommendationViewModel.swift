@@ -10,12 +10,13 @@ import Foundation
 import CoreLocation
 
 // MARK: - Delegate Protocol
+
 protocol RecommendationViewDelegate: AnyObject {
     func didGetWeather()
     func didGetRecommendation()
 }
 
-class RecommendationViewModel: NSObject {
+final class RecommendationViewModel {
 
     // MARK: - Properties
 
@@ -23,13 +24,12 @@ class RecommendationViewModel: NSObject {
     var temperature: Double?
     var recommendation: String?
     var location: CLLocation?
-    let locationManager = UserLocationManager()
+    private let locationManager = UserLocationManager()
 
     // MARK: - Initializer
 
     init(delegate: RecommendationViewDelegate) {
         self.delegate = delegate
-        super.init() // is this right/ok? I had to do it to be able to set the delegate below
         locationManager.delegate = self
     }
 
@@ -62,13 +62,23 @@ class RecommendationViewModel: NSObject {
         let outfit = Outfit(components: recommendedItems)
         recommendation = outfitString(from: outfit)
     }
+    
+    private func outfitString(from outfit: Outfit) -> String {
+        var componentNames: [String] = []
+        for component in outfit.components {
+            componentNames.append(component.name)
+        }
+        return componentNames.joined(separator: ", ")
+    }
 
 }
 
 extension RecommendationViewModel: UserLocationManagerDelegate {
     func didGetLocation() {
         setLocation()
-        guard let lat = location?.coordinate.latitude, let long = location?.coordinate.longitude else { print("🤔 no location"); return }
+        
+        guard let lat = location?.coordinate.latitude,
+            let long = location?.coordinate.longitude else { print("🤔 no location"); return }
         getTemperature(lat: lat, long: long)
     }
 }

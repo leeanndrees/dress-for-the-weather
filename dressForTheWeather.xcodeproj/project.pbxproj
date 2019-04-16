@@ -296,7 +296,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-dressForTheWeather/Pods-dressForTheWeather-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-dressForTheWeather/Pods-dressForTheWeather-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -309,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dressForTheWeather/Pods-dressForTheWeather-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dressForTheWeather/Pods-dressForTheWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		93A8A0D0B922037DCA7929D9 /* [CP] Check Pods Manifest.lock */ = {
