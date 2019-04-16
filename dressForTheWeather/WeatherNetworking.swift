@@ -15,26 +15,27 @@ final class WeatherNetworking {
     
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
+<<<<<<< HEAD:dressForTheWeather/WeatherNetworking.swift
+    static private var apiKey = "e3c6c3f5254ee83b29cf829a4eee5c46" // add back in apikey
+=======
+    
+    static private var apiKey = "" // add back in apikey
+>>>>>>> e624a21141d4d6fd05565ad548afb94065f48774:dressForTheWeather/Models/WeatherNetworking.swift
     
     // MARK: - Methods
     
-    static func getWeatherFor(latitude: Double, longitude: Double, completion: (@escaping (WeatherData) -> Void)) {
+    static func getWeather(completion: (@escaping (WeatherData) -> Void)) {
         dataTask?.cancel()
         
-        let darkSkyKey = "e3c6c3f5254ee83b29cf829a4eee5c46"
-        
-        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/\(latitude),\(longitude)"),
-            let url = urlComponents.url else {
-            return
-        }
+        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(apiKey)/37.8267,-122.4233"),
+              let url = urlComponents.url else { return }
         
         dataTask = weatherSession.dataTask(with: url) { data, response, error in
             defer { self.dataTask = nil }
             
             if let error = error {
-                print(error.localizedDescription)
-            } else if let data = data, let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
+                print("DataTask error: " + error.localizedDescription + "\n")
+            } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                 guard let newWeatherData = self.converted(from: data) else { return }
                 completion(newWeatherData)
             }

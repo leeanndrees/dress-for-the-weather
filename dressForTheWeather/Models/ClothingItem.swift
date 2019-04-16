@@ -29,5 +29,3 @@ class ClothingItem {
         self.tempRange = self.tempRange.lowerBound...newUpperBound
     }
 }
-
-
