@@ -34,12 +34,12 @@ final class RecommendationViewModel {
     private var location: CLLocation? {
         didSet {
             let latitude = location!.coordinate.latitude
-            let longitude = location!.coordinate.longitude 
+            let longitude = location!.coordinate.longitude
             
             getTemperature(latitude: latitude, longitude: longitude)
         }
     }
-    private let locationManager = UserLocationManager()
+    private let userLocationManager = UserLocationManager()
     
     // MARK: - Initializer
     
@@ -51,14 +51,14 @@ final class RecommendationViewModel {
     // MARK: - Methods
     
     private func setup() {
-        locationManager.delegate = self
+        userLocationManager.delegate = self
         getLocation()
     }
     
     // MARK: - Private Methods
     
     private func getLocation() {
-        locationManager.requestLocation()
+        userLocationManager.getLocation()
     }
     
     private func getTemperature(latitude: Double, longitude: Double) {
