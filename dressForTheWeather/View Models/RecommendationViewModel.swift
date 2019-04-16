@@ -75,12 +75,7 @@ final class RecommendationViewModel {
     private func setRecommendations(for temperature: Double) {
         let recommendedItems = generateRecommendation(for: temperature, from: allClothingItems)
         let outfit = Outfit(components: recommendedItems)
-        recommendations = outfitString(from: outfit)
-    }
-    
-    private func outfitString(from outfit: Outfit) -> String {
-        let componentNames = outfit.components.map { $0.name }
-        return componentNames.joined(separator: ", ")
+        recommendations = outfit.recommendations
     }
 
 }
@@ -88,7 +83,7 @@ final class RecommendationViewModel {
 extension RecommendationViewModel: UserLocationManagerDelegate {
     
     func didGetLocation() {
-        location = locationManager.location
+        location = userLocationManager.location
     }
     
 }
