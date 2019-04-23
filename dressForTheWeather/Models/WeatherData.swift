@@ -9,8 +9,8 @@
 import Foundation
 
 struct WeatherData: Decodable {
-    var latitude: Double
-    var longitude: Double
+    let latitude: Double
+    let longitude: Double
     let currently: Currently
 }
 

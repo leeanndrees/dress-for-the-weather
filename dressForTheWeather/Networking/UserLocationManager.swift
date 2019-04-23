@@ -27,11 +27,7 @@ class UserLocationManager: NSObject {
         return locationManager
     }()
     
-    public func requestAuthorization() {
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    public func requestLocation() {
+    public func getLocation() {
         locationManager.requestLocation()
     }
     
