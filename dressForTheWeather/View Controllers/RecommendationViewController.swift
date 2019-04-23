@@ -8,50 +8,50 @@
 
 import UIKit
 
-class RecommendationViewController: UIViewController {
+final class RecommendationViewController: UIViewController {
+    
     // MARK: - Properties
-    var temp: Int?
+    
     private var viewModel: RecommendationViewModel!
     
     // MARK: - IBOutlets
-    @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var recLabel: UILabel!
     
+    @IBOutlet var temperatureLabel: UILabel!
+    @IBOutlet var recommendationLabel: UILabel!
     
-    // MARK: - Lifecycle Methods
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel = RecommendationViewModel(delegate: self)
-        viewModel.getTemperature()
     }
     
     // MARK: - Methods
     
-    func updateTempLabel() {
-        guard let temperature = viewModel.temperature else { return }
-        tempLabel.text = "\(temperature)°"
+    private func updateTempLabel(with temperature: String) {
+        temperatureLabel.text = "Temperature: \(temperature)"
     }
     
-    func updateRecLabel(with text: String) {
-        recLabel.text = text
+    private func updateRecommendationLabel(with recommendations: String) {
+        recommendationLabel.text = "Recommended outfit: \(recommendations)"
     }
 
 }
 
-// MARK: - Delegate Methods
+//// MARK: - Delegate Methods
 
 extension RecommendationViewController: RecommendationViewDelegate {
-    func didGetWeather() {
+    
+    func didGetRecommendations(_ recommendations: String) {
         DispatchQueue.main.async {
-            self.updateTempLabel()
+            self.updateRecommendationLabel(with: recommendations)
         }
     }
     
-    func didGetRecommendation() {
+    func didGetWeather(_ weather: String) {
         DispatchQueue.main.async {
-            guard let rec = self.viewModel.recommendation else { return }
-            self.updateRecLabel(with: rec)
+            self.updateTempLabel(with: weather)
         }
     }
     

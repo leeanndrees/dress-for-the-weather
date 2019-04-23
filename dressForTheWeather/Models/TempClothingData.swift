@@ -8,7 +8,7 @@
 
 import Foundation
 
-let clothingItems: [ClothingItem] = []
+let clothingItems: [ClothingItem] = [coat, scarf, gloves, lightJacket, fooItem]
 
 // Winter Clothes
 var coat = ClothingItem(name: "winter coat", placement: [.torso], tempRange: -30...35)
@@ -22,6 +22,7 @@ var woolSocks = ClothingItem(name: "wool socks", placement: [.feet], tempRange: 
 
 // Mild Weather Clothes
 var lightJacket = ClothingItem(name: "light jacket", placement: [.torso], tempRange: 55...70)
+var fooItem = ClothingItem(name: "test item", placement: [.head], tempRange: 55...70)
 var lightScarf = ClothingItem(name: "lightweight scarf", placement: [.neck], tempRange: 40...60)
 
 

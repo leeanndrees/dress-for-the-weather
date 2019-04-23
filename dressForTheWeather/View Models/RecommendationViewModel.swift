@@ -7,56 +7,81 @@
 //
 
 import Foundation
+import CoreLocation
 
 // MARK: - Delegate Protocol
+
 protocol RecommendationViewDelegate: AnyObject {
-    func didGetWeather()
-    func didGetRecommendation()
+    func didGetWeather(_ weather: String)
+    func didGetRecommendations(_ recommendations: String)
 }
 
-class RecommendationViewModel {
+final class RecommendationViewModel {
     
     // MARK: - Properties
     
     weak var delegate: RecommendationViewDelegate?
-    var temperature: Double? {
+    private var temperature: Double = 0 {
         didSet {
-            delegate?.didGetWeather()
-            getRecommendation()
+            delegate?.didGetWeather(String(temperature))
         }
     }
-    var recommendation: String? {
+    private var recommendations: String = "" {
         didSet {
-            delegate?.didGetRecommendation()
+            delegate?.didGetRecommendations(recommendations)
         }
     }
+    private var location: CLLocation? {
+        didSet {
+            let latitude = location!.coordinate.latitude
+            let longitude = location!.coordinate.longitude
+            
+            getTemperature(latitude: latitude, longitude: longitude)
+        }
+    }
+    private let userLocationManager = UserLocationManager()
     
     // MARK: - Initializer
     
     init(delegate: RecommendationViewDelegate) {
         self.delegate = delegate
+        setup()
     }
     
     // MARK: - Methods
     
-    func getTemperature() {
-        WeatherNetworking.getWeather { data in
-            self.temperature = data.currently.temperature
-        }
+    private func setup() {
+        userLocationManager.delegate = self
+        getLocation()
     }
     
-    func generateRecommendation(for temp: Double, from items: [ClothingItem]) -> [ClothingItem] {
-        return items.filter{ $0.tempRange.contains(temp) }
+    private func getLocation() {
+        userLocationManager.getLocation()
     }
     
-    func getRecommendation() {
-        guard let temp = temperature else {
-            print("no temp")
-            return
+    private func getTemperature(latitude: Double, longitude: Double) {
+        WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude) { weatherData in
+            self.temperature = weatherData.currently.temperature
+            self.setRecommendations(for: self.temperature)
         }
-        let recommendedItems = generateRecommendation(for: temp, from: allClothingItems)
+    }
+
+    private func generateRecommendation(for temp: Double, from items: [ClothingItem]) -> [ClothingItem] {
+        return items.filter { $0.tempRange.contains(temp) }
+    }
+
+    private func setRecommendations(for temperature: Double) {
+        let recommendedItems = generateRecommendation(for: temperature, from: allClothingItems)
         let outfit = Outfit(components: recommendedItems)
-        recommendation = outfitString(from: outfit)
+        recommendations = outfit.recommendations
+    }
+
+}
+
+extension RecommendationViewModel: UserLocationManagerDelegate {
+    
+    func didGetLocation() {
+        location = userLocationManager.location
     }
     
 }
