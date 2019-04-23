@@ -28,14 +28,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="xKw-fP-K7w" firstAttribute="top" secondItem="r1n-Og-tQn" secondAttribute="bottom" constant="50" id="JNG-b8-eXx"/>
-                            <constraint firstItem="r1n-Og-tQn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KvH-r9-Tjw"/>
-                            <constraint firstItem="xKw-fP-K7w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NMA-G1-tQc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xKw-fP-K7w" secondAttribute="trailing" constant="16" id="OLC-XI-PVQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="r1n-Og-tQn" secondAttribute="bottom" constant="-77" id="mcj-8g-UqH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r1n-Og-tQn" secondAttribute="trailing" constant="16" id="ptX-pg-ozw"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
