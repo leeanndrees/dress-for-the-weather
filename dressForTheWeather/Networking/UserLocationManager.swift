@@ -36,6 +36,7 @@ class UserLocationManager: NSObject {
 extension UserLocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // TODO: error handling
         print("didFailWithError \(error)")
     }
     

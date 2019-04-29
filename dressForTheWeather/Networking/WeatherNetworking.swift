@@ -30,6 +30,7 @@ final class WeatherNetworking {
             defer { self.dataTask = nil }
             
             if let error = error {
+                // TODO: error handling
                 print(error.localizedDescription)
             } else if let data = data, let response = response as? HTTPURLResponse,
                 response.statusCode == 200 {
