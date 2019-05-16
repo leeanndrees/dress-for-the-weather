@@ -21,6 +21,8 @@ final class RecommendationViewModel {
     // MARK: - Properties
     
     weak var delegate: RecommendationViewDelegate?
+    private var lowTemp: Double = 0
+    private var highTemp: Double = 0
     private var temperature: Double = 0 {
         didSet {
             delegate?.didGetWeather(String(temperature))
@@ -61,18 +63,19 @@ final class RecommendationViewModel {
     
     private func getTemperature(latitude: Double, longitude: Double) {
         WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude) { weatherData in
+            self.lowTemp = weatherData.daily.data[0].temperatureLow
+            self.highTemp = weatherData.daily.data[0].temperatureHigh
+            self.setRecommendations(for: self.lowTemp, highTemp: self.highTemp)
             self.temperature = weatherData.currently.temperature
-            self.setRecommendations(for: self.temperature)
-            print(weatherData.daily.data[0].temperatureLow)
         }
     }
 
-    private func generateRecommendation(for temp: Double, from items: [ClothingItem]) -> [ClothingItem] {
-        return items.filter { $0.tempRange.contains(temp) }
+    private func generateRecommendation(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
+        return items.filter { $0.tempRange.contains(lowTemp) || $0.tempRange.contains(highTemp) }
     }
 
-    private func setRecommendations(for temperature: Double) {
-        let recommendedItems = generateRecommendation(for: temperature, from: allClothingItems)
+    private func setRecommendations(for lowTemp: Double, highTemp: Double) {
+        let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
         let outfit = Outfit(components: recommendedItems)
         recommendations = outfit.recommendations
     }
