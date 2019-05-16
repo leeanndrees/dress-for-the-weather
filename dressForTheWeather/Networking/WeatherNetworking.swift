@@ -16,9 +16,12 @@ final class WeatherNetworking {
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
     
+    static let darkSkyKey = "e3c6c3f5254ee83b29cf829a4eee5c46"
+    
     // MARK: - Methods
     
-    static func getWeatherFor(latitude: Double, longitude: Double, completion: (@escaping (WeatherData) -> Void)) {
+    static func getWeatherFor(latitude: Double, longitude: Double, success: @escaping (WeatherData) -> Void, failure: @escaping (Error?) -> Void) {
+    
         dataTask?.cancel()
         
         guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/\(latitude),\(longitude)"),
@@ -30,12 +33,12 @@ final class WeatherNetworking {
             defer { self.dataTask = nil }
             
             if let error = error {
-                // TODO: error handling
                 print(error.localizedDescription)
+                failure(error)
             } else if let data = data, let response = response as? HTTPURLResponse,
                 response.statusCode == 200 {
                 guard let newWeatherData = self.converted(from: data) else { return }
-                completion(newWeatherData)
+                success(newWeatherData)
             }
         }
         
