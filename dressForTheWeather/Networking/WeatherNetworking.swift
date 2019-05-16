@@ -21,7 +21,7 @@ final class WeatherNetworking {
     static func getWeatherFor(latitude: Double, longitude: Double, completion: (@escaping (WeatherData) -> Void)) {
         dataTask?.cancel()
         
-        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/\(latitude),\(longitude)"),
+        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/e3c6c3f5254ee83b29cf829a4eee5c46/\(latitude),\(longitude)"),
             let url = urlComponents.url else {
             return
         }

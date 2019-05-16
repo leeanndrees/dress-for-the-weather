@@ -63,6 +63,7 @@ final class RecommendationViewModel {
         WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude) { weatherData in
             self.temperature = weatherData.currently.temperature
             self.setRecommendations(for: self.temperature)
+            print(weatherData.daily.data[0].temperatureLow)
         }
     }
 
