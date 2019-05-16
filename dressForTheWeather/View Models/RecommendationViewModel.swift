@@ -25,7 +25,7 @@ final class RecommendationViewModel {
     private var highTemp: Double = 0
     private var temperature: Double = 0 {
         didSet {
-            delegate?.didGetWeather(String(temperature))
+            delegate?.didGetWeather(String("\(highTemp) / \(lowTemp)"))
         }
     }
     private var recommendations: String = "" {
