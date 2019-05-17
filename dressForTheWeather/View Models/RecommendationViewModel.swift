@@ -66,7 +66,7 @@ final class RecommendationViewModel {
             self.temperature = weatherData.currently.temperature
             self.setRecommendations(for: self.temperature)
         }, failure: { error in
-            self.delegate?.didFailToGetWeather(error?.localizedDescription ?? "Something went wrong")
+            self.delegate?.didFailToGetWeather(error.localizedDescription)
             }
         )
     }
