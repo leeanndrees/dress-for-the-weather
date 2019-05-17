@@ -42,6 +42,13 @@ final class RecommendationViewController: UIViewController {
 //// MARK: - Delegate Methods
 
 extension RecommendationViewController: RecommendationViewDelegate {
+    func didFailToGetWeather(_ description: String) {
+        let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
     
     func didGetRecommendations(_ recommendations: String) {
         DispatchQueue.main.async {

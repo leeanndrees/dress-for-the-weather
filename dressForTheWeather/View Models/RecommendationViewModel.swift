@@ -14,6 +14,7 @@ import CoreLocation
 protocol RecommendationViewDelegate: AnyObject {
     func didGetWeather(_ weather: String)
     func didGetRecommendations(_ recommendations: String)
+    func didFailToGetWeather(_ description: String)
 }
 
 final class RecommendationViewModel {
@@ -60,10 +61,14 @@ final class RecommendationViewModel {
     }
     
     private func getTemperature(latitude: Double, longitude: Double) {
-        WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude) { weatherData in
+        WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude, success: {
+            weatherData in
             self.temperature = weatherData.currently.temperature
             self.setRecommendations(for: self.temperature)
-        }
+        }, failure: { error in
+            self.delegate?.didFailToGetWeather(error.localizedDescription)
+            }
+        )
     }
 
     private func generateRecommendation(for temp: Double, from items: [ClothingItem]) -> [ClothingItem] {
@@ -79,6 +84,10 @@ final class RecommendationViewModel {
 }
 
 extension RecommendationViewModel: UserLocationManagerDelegate {
+    func didFail(errorDescription: String) {
+        delegate?.didFailToGetWeather(errorDescription)
+    }
+    
     
     func didGetLocation() {
         location = userLocationManager.location
