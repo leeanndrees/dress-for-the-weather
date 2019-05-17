@@ -20,7 +20,7 @@ final class WeatherNetworking {
     
     // MARK: - Methods
     
-    static func getWeatherFor(latitude: Double, longitude: Double, success: @escaping (WeatherData) -> Void, failure: @escaping (Error?) -> Void) {
+    static func getWeatherFor(latitude: Double, longitude: Double, success: @escaping (WeatherData) -> Void, failure: @escaping (Error) -> Void) {
     
         dataTask?.cancel()
         

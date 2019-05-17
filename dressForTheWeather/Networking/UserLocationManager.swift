@@ -10,13 +10,18 @@ import CoreLocation
 import Foundation
 
 protocol UserLocationManagerDelegate: AnyObject {
-    func didGetLocation()
+    func didUpdateLocations()
     func didFail(errorDescription: String)
 }
 
 class UserLocationManager: NSObject {
     
-    public var location: CLLocation?
+    public var location: CLLocation? {
+        didSet {
+            delegate?.didUpdateLocations()
+        }
+    }
+    
     weak var delegate: UserLocationManagerDelegate?
     
     private lazy var locationManager: CLLocationManager = {
@@ -41,9 +46,7 @@ extension UserLocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let newLocation = locations.last!
-        location = newLocation
-        delegate?.didGetLocation()
+        location = locations.last
     }
 
 }
