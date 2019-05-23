@@ -11,5 +11,6 @@ import UIKit
 class ClothingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var itemLabel: UILabel!
+    @IBOutlet var itemImage: UIImageView!
     
 }

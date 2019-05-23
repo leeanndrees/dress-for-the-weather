@@ -7,11 +7,22 @@
 //
 
 import Foundation
+import UIKit
 
 class ClothingItem {
     var name: String
     var placement: [BodyPlacement]
     var tempRange: ClosedRange<Double>
+    private var fallbackImages: [UIImage] = [UIImage(named: "sparkle1")!,
+                                             UIImage(named: "sparkle2")!,
+                                             UIImage(named: "sparkle3")!]
+    var image: UIImage {
+        if let theImage = UIImage(named: name) {
+            return theImage
+        } else {
+            return fallbackImages.randomElement()!
+        }
+    }
     
     init(name: String, placement: [BodyPlacement], tempRange: ClosedRange<Double>) {
         self.name = name

@@ -75,6 +75,9 @@ extension RecommendationViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothingCell", for: indexPath) as! ClothingCollectionViewCell
         
         cell.itemLabel.text = viewModel.recommendedClothingItems[indexPath.row].name
+        
+        cell.itemImage.image = viewModel.recommendedClothingItems[indexPath.row].image
+        
         return cell
     }
 }
