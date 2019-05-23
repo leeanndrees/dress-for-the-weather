@@ -75,6 +75,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="clothingCollectionView" destination="grH-Cx-lyD" id="j5b-vz-VIG"/>
                         <outlet property="recommendationLabel" destination="xKw-fP-K7w" id="NVy-xV-lo7"/>
                         <outlet property="temperatureLabel" destination="r1n-Og-tQn" id="bsy-71-EII"/>
                     </connections>

@@ -24,6 +24,7 @@ final class RecommendationViewModel {
     weak var delegate: RecommendationViewDelegate?
     private var lowTemp: Double = 0
     private var highTemp: Double = 0
+    public var recommendedClothingItems: [ClothingItem] = []
     private var temperature: Double = 0 {
         didSet {
             delegate?.didGetWeather(String("\(Int(lowTemp.rounded())) / \(Int(highTemp.rounded()))"))
@@ -80,6 +81,7 @@ final class RecommendationViewModel {
     
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
         let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
+        recommendedClothingItems = recommendedItems
         let outfit = Outfit(components: recommendedItems)
         recommendations = outfit.recommendations
     }

@@ -19,6 +19,7 @@ final class RecommendationViewController: UIViewController {
     
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var recommendationLabel: UILabel!
+    @IBOutlet var clothingCollectionView: ClothingCollectionView!
     
     // MARK: - Life Cycle
     
@@ -54,6 +55,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetRecommendations(_ recommendations: String) {
         DispatchQueue.main.async {
             self.updateRecommendationLabel(with: recommendations)
+            self.clothingCollectionView.reloadData()
         }
     }
     
@@ -67,7 +69,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
 
 extension RecommendationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return things.count
+        return viewModel.recommendedClothingItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
