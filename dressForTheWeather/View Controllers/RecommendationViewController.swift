@@ -13,7 +13,6 @@ final class RecommendationViewController: UIViewController {
     // MARK: - Properties
     
     private var viewModel: RecommendationViewModel!
-    var things = ["hat", "shirt", "pants", "shorts"]
     
     // MARK: - IBOutlets
     
@@ -73,8 +72,9 @@ extension RecommendationViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothingCell", for: indexPath)
-        cell.backgroundColor = .magenta
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothingCell", for: indexPath) as! ClothingCollectionViewCell
+        
+        cell.itemLabel.text = viewModel.recommendedClothingItems[indexPath.row].name
         return cell
     }
 }
