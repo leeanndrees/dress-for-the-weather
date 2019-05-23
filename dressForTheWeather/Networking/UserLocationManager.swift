@@ -11,6 +11,7 @@ import Foundation
 
 protocol UserLocationManagerDelegate: AnyObject {
     func didGetLocation()
+    func didFail(errorDescription: String)
 }
 
 class UserLocationManager: NSObject {
@@ -36,7 +37,7 @@ class UserLocationManager: NSObject {
 extension UserLocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("didFailWithError \(error)")
+        delegate?.didFail(errorDescription: error.localizedDescription)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
