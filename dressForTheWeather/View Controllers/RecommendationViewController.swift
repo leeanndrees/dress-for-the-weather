@@ -26,6 +26,7 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = RecommendationViewModel(delegate: self)
+        setBackgroundColor()
     }
     
     // MARK: - Methods
@@ -36,6 +37,10 @@ final class RecommendationViewController: UIViewController {
     
     private func updateRecommendationLabel(with recommendations: String) {
         recommendationLabel.text = "Recommended outfit: \(recommendations)"
+    }
+    
+    private func setBackgroundColor() {
+        view.backgroundColor = UIColor(named: "mild")
     }
 
 }
