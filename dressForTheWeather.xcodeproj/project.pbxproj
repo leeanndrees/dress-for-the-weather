@@ -22,6 +22,11 @@
 		435390542232E91400399216 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390532232E91400399216 /* WeatherData.swift */; };
 		43A740952296F1A800880FED /* ClothingCollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A740942296F1A800880FED /* ClothingCollectionVIew.swift */; };
 		43A74097229724A400880FED /* ClothingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A74096229724A400880FED /* ClothingCollectionViewCell.swift */; };
+		43A7409F22983B1800880FED /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409A229839E300880FED /* Quicksand-Bold.ttf */; };
+		43A740A022983B1C00880FED /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409D229839E300880FED /* Quicksand-Light.ttf */; };
+		43A740A122983B1E00880FED /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409B229839E300880FED /* Quicksand-Medium.ttf */; };
+		43A740A222983B2100880FED /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409C229839E300880FED /* Quicksand-Regular.ttf */; };
+		43A740A322983B2300880FED /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409E229839EF00880FED /* VarelaRound-Regular.ttf */; };
 		43D83926224D55D500128563 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D83925224D55D500128563 /* UserLocationManager.swift */; };
 		7345049B224D132200090FF8 /* WeatherNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345049A224D132200090FF8 /* WeatherNetworking.swift */; };
 		73ACA6122266410E00D1FC1C /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ACA6112266410E00D1FC1C /* Outfit.swift */; };
@@ -59,6 +64,11 @@
 		435390532232E91400399216 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		43A740942296F1A800880FED /* ClothingCollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingCollectionVIew.swift; sourceTree = "<group>"; };
 		43A74096229724A400880FED /* ClothingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingCollectionViewCell.swift; sourceTree = "<group>"; };
+		43A7409A229839E300880FED /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		43A7409B229839E300880FED /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		43A7409C229839E300880FED /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		43A7409D229839E300880FED /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		43A7409E229839EF00880FED /* VarelaRound-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.ttf"; sourceTree = "<group>"; };
 		43D83925224D55D500128563 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		7345049A224D132200090FF8 /* WeatherNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworking.swift; sourceTree = "<group>"; };
 		73ACA6112266410E00D1FC1C /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
@@ -112,18 +122,19 @@
 		434232382215B89700304F6A /* dressForTheWeather */ = {
 			isa = PBXGroup;
 			children = (
-				73ACA6102266369D00D1FC1C /* Networking */,
-				4353901F2231827400399216 /* Models */,
-				435390262231862000399216 /* View Models */,
-				4353902B2231A62C00399216 /* View Controllers */,
 				434232392215B89700304F6A /* AppDelegate.swift */,
-				4342323D2215B89700304F6A /* Main.storyboard */,
 				434232402215B89700304F6A /* Assets.xcassets */,
-				434232422215B89700304F6A /* LaunchScreen.storyboard */,
-				434232452215B89700304F6A /* Info.plist */,
-				430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */,
 				43A740942296F1A800880FED /* ClothingCollectionVIew.swift */,
 				43A74096229724A400880FED /* ClothingCollectionViewCell.swift */,
+				430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */,
+				434232452215B89700304F6A /* Info.plist */,
+				434232422215B89700304F6A /* LaunchScreen.storyboard */,
+				4342323D2215B89700304F6A /* Main.storyboard */,
+				4353901F2231827400399216 /* Models */,
+				73ACA6102266369D00D1FC1C /* Networking */,
+				43A740982298399800880FED /* Resources */,
+				4353902B2231A62C00399216 /* View Controllers */,
+				435390262231862000399216 /* View Models */,
 			);
 			path = dressForTheWeather;
 			sourceTree = "<group>";
@@ -163,6 +174,26 @@
 				4342323B2215B89700304F6A /* RecommendationViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		43A740982298399800880FED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				43A74099229839CC00880FED /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		43A74099229839CC00880FED /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				43A7409A229839E300880FED /* Quicksand-Bold.ttf */,
+				43A7409D229839E300880FED /* Quicksand-Light.ttf */,
+				43A7409B229839E300880FED /* Quicksand-Medium.ttf */,
+				43A7409C229839E300880FED /* Quicksand-Regular.ttf */,
+				43A7409E229839EF00880FED /* VarelaRound-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		5108107534FA2FC72FE22212 /* Frameworks */ = {
@@ -280,8 +311,13 @@
 			files = (
 				434232442215B89700304F6A /* LaunchScreen.storyboard in Resources */,
 				430A329A221F3CA0000AAE4E /* GoogleService-Info.plist in Resources */,
+				43A740A122983B1E00880FED /* Quicksand-Medium.ttf in Resources */,
+				43A740A222983B2100880FED /* Quicksand-Regular.ttf in Resources */,
 				434232412215B89700304F6A /* Assets.xcassets in Resources */,
+				43A740A322983B2300880FED /* VarelaRound-Regular.ttf in Resources */,
+				43A740A022983B1C00880FED /* Quicksand-Light.ttf in Resources */,
 				4342323F2215B89700304F6A /* Main.storyboard in Resources */,
+				43A7409F22983B1800880FED /* Quicksand-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
