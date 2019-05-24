@@ -32,11 +32,11 @@ final class RecommendationViewController: UIViewController {
     // MARK: - Methods
     
     private func updateTempLabel(with temperature: String) {
-        temperatureLabel.text = "Temperature: \(temperature)"
+        temperatureLabel.text = "\(temperature)"
     }
     
     private func updateRecommendationLabel(with recommendations: String) {
-        recommendationLabel.text = "Recommended outfit: \(recommendations)"
+        recommendationLabel.text = "\(recommendations)"
     }
     
     private func setBackgroundColor() {
