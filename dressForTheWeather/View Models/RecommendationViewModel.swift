@@ -27,7 +27,7 @@ final class RecommendationViewModel {
     public var recommendedClothingItems: [ClothingItem] = []
     private var temperature: Double = 0 {
         didSet {
-            delegate?.didGetWeather(String("\(Int(lowTemp.rounded())) / \(Int(highTemp.rounded()))"))
+            delegate?.didGetWeather(String("\(Int(lowTemp.rounded()))º / \(Int(highTemp.rounded()))º"))
         }
     }
     private var recommendations: String = "" {
