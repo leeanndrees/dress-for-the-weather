@@ -62,7 +62,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
         let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+//        present(alertController, animated: true)
     }
     
     
@@ -90,7 +90,6 @@ extension RecommendationViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothingCell", for: indexPath) as! ClothingCollectionViewCell
         
         cell.itemLabel.text = viewModel.recommendedClothingItems[indexPath.row].name
-        
         cell.itemImage.image = viewModel.recommendedClothingItems[indexPath.row].image
         
         return cell
