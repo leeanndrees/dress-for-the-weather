@@ -9,7 +9,7 @@
 import Foundation
 
 // Winter Clothes
-var coat = ClothingItem(name: "winter coat", placement: [.torso], tempRange: -30...35)
+var coat = ClothingItem(name: "winter coat", placement: [.torsoOuter], tempRange: -30...35)
 var scarf = ClothingItem(name: "scarf", placement: [.neck], tempRange: -30...35)
 var coatWithHood = ClothingItem(name: "hooded coat", placement: [.torso, .head], tempRange: -30...35)
 var hat = ClothingItem(name: "hat", placement: [.head], tempRange: -30...45)
@@ -21,7 +21,7 @@ var mittens = ClothingItem(name: "mittens", placement: [.hands], tempRange: -30.
 var sweater = ClothingItem(name: "sweater", placement: [.torso], tempRange: -30...45)
 
 // Mild Weather Clothes
-var lightJacket = ClothingItem(name: "light jacket", placement: [.torso], tempRange: 55...70)
+var lightJacket = ClothingItem(name: "light jacket", placement: [.torsoOuter], tempRange: 55...70)
 var lightScarf = ClothingItem(name: "lightweight scarf", placement: [.neck], tempRange: 40...60)
 var jeans = ClothingItem(name: "jeans", placement: [.legs], tempRange: -30...75)
 var tshirt = ClothingItem(name: "t-shirt", placement: [.torso], tempRange: 45...85)

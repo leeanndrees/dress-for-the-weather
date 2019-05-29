@@ -11,6 +11,7 @@ import Foundation
 enum BodyPlacement {
     case head
     case torso
+    case torsoOuter
     case legs
     case feet
     case hands
