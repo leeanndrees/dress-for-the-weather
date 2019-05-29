@@ -124,8 +124,6 @@
 			children = (
 				434232392215B89700304F6A /* AppDelegate.swift */,
 				434232402215B89700304F6A /* Assets.xcassets */,
-				43A740942296F1A800880FED /* ClothingCollectionVIew.swift */,
-				43A74096229724A400880FED /* ClothingCollectionViewCell.swift */,
 				430A3299221F3CA0000AAE4E /* GoogleService-Info.plist */,
 				434232452215B89700304F6A /* Info.plist */,
 				434232422215B89700304F6A /* LaunchScreen.storyboard */,
@@ -171,6 +169,8 @@
 		4353902B2231A62C00399216 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				43A740942296F1A800880FED /* ClothingCollectionVIew.swift */,
+				43A74096229724A400880FED /* ClothingCollectionViewCell.swift */,
 				4342323B2215B89700304F6A /* RecommendationViewController.swift */,
 			);
 			path = "View Controllers";

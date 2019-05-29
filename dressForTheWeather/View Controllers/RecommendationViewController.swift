@@ -40,7 +40,7 @@ final class RecommendationViewController: UIViewController {
     }
     
     private func setBackgroundColor() {
-        
+        // TODO: move into view model
         guard let mildGreenColor = UIColor(named: "mildGreen"),
             let warmOrangeColor = UIColor(named: "warmOrange") else { return }
         
