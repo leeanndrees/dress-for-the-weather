@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 // MARK: - Delegate Protocol
 
@@ -42,6 +43,16 @@ final class RecommendationViewModel {
             
             getTemperature(latitude: latitude, longitude: longitude)
         }
+    }
+    public var backgroundGradientLayer: CAGradientLayer? {
+        guard let mildGreenColor = UIColor(named: "mildGreen"),
+            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
+        return gradientLayer
     }
     private let userLocationManager = UserLocationManager()
     
