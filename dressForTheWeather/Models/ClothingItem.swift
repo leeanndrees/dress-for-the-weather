@@ -13,16 +13,14 @@ class ClothingItem {
     var name: String
     var placement: [BodyPlacement]
     var tempRange: ClosedRange<Double>
-    // TODO: don't force unwrap
-    private var fallbackImages: [UIImage] = [UIImage(named: "sparkle1")!,
-                                             UIImage(named: "sparkle2")!,
-                                             UIImage(named: "sparkle3")!]
-    var image: UIImage {
+    private var fallbackImages: [UIImage?] = [UIImage(named: "sparkle1") ?? nil,
+                                             UIImage(named: "sparkle2") ?? nil,
+                                             UIImage(named: "sparkle3") ?? nil]
+    var image: UIImage? {
         if let theImage = UIImage(named: name) {
             return theImage
         } else {
-            // TODO: don't force unwrap
-            return fallbackImages.randomElement()!
+            return fallbackImages.randomElement() ?? nil
         }
     }
     
