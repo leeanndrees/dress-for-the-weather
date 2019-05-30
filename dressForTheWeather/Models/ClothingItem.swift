@@ -10,15 +10,6 @@ import Foundation
 import UIKit
 
 class ClothingItem {
-    
-    // for conforming to Equatable:
-//    static func == (lhs: ClothingItem, rhs: ClothingItem) -> Bool {
-//        return
-//            lhs.name == rhs.name &&
-//            lhs.placement == rhs.placement &&
-//            lhs.tempRange == rhs.tempRange
-//    }
-    
     var name: String
     var placement: [BodyPlacement]
     var tempRange: ClosedRange<Double>

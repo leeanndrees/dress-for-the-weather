@@ -96,7 +96,9 @@ final class RecommendationViewModel {
         for thePlacement in BodyPlacement.allCases {
             let itemsWithPlacement = recommendedItems.filter { $0.placement.contains(thePlacement) }
             if let randomItem = itemsWithPlacement.randomElement() {
-                filteredRecommendation.append(randomItem)
+                if filteredRecommendation.filter({ $0.placement.contains(thePlacement) }).isEmpty {
+                    filteredRecommendation.append(randomItem)
+                }
             }
         }
         recommendedClothingItems = filteredRecommendation
