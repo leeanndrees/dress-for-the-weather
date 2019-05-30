@@ -92,8 +92,15 @@ final class RecommendationViewModel {
     
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
         let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
-        recommendedClothingItems = recommendedItems
-        let outfit = Outfit(components: recommendedItems)
+        var filteredRecommendation: [ClothingItem] = []
+        for thePlacement in BodyPlacement.allCases {
+            let itemsWithPlacement = recommendedItems.filter { $0.placement.contains(thePlacement) }
+            if let randomItem = itemsWithPlacement.randomElement() {
+                filteredRecommendation.append(randomItem)
+            }
+        }
+        recommendedClothingItems = filteredRecommendation
+        let outfit = Outfit(components: filteredRecommendation)
         recommendations = outfit.recommendations
     }
     

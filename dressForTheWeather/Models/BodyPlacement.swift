@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BodyPlacement {
+enum BodyPlacement: CaseIterable {
     case head
     case torso
     case torsoOuter
