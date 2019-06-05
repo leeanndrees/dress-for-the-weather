@@ -86,12 +86,12 @@ final class RecommendationViewModel {
         )
     }
     
-    private func generateRecommendation(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
+    private func selectClothingItems(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
         return items.filter { $0.tempRange.contains(lowTemp) || $0.tempRange.contains(highTemp) }
     }
     
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
-        let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
+        let recommendedItems = selectClothingItems(for: lowTemp, highTemp: highTemp, from: allClothingItems)
         
         recommendedClothingItems = []
         
@@ -105,7 +105,7 @@ final class RecommendationViewModel {
         }
       
         let outfit = Outfit(components: recommendedClothingItems)
-        recommendations = outfit.recommendations
+        recommendations = outfit.recommendationString
     }
     
 }

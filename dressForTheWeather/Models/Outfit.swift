@@ -12,7 +12,7 @@ struct Outfit {
     
     var components: [ClothingItem]
     
-    var recommendations: String {
+    var recommendationString: String {
         let componentNames = components.map { $0.name }
         return componentNames.joined(separator: ", ")
     }
