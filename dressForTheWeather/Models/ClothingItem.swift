@@ -17,11 +17,15 @@ class ClothingItem {
                                              UIImage(named: "sparkle2") ?? nil,
                                              UIImage(named: "sparkle3") ?? nil]
     var image: UIImage? {
-        if let theImage = UIImage(named: name) {
-            return theImage
-        } else {
-            return fallbackImages.randomElement() ?? nil
-        }
+        guard let theImage = UIImage(named: name) else { return fallbackImage }
+        return theImage
+    }
+    
+    private let fallbackImageNames = ["sparkle1", "sparkle2", "sparkle3"]
+    
+    private var fallbackImage: UIImage? {
+        guard let imageName = fallbackImageNames.randomElement() else { return nil }
+        return UIImage(named: imageName)
     }
     
     init(name: String, placement: [BodyPlacement], tempRange: ClosedRange<Double>) {
