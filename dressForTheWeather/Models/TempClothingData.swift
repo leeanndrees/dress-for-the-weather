@@ -55,3 +55,16 @@ var allClothingItems = [
     sandals,
     skirt
 ]
+
+
+enum TemperatureRanges: String, CaseIterable {
+    case veryCold
+    case cold
+    case sortaCold
+    case mild
+//    case sortaWarm
+    case warm
+//    case veryWarm
+    case hot
+//    case veryHot
+}
