@@ -56,8 +56,7 @@ var allClothingItems = [
     skirt
 ]
 
-
-enum TemperatureRanges: String, CaseIterable {
+enum TemperatureRanges: String, Equatable {
     case veryCold
     case cold
     case sortaCold

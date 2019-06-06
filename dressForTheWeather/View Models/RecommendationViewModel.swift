@@ -44,16 +44,6 @@ final class RecommendationViewModel {
             getTemperature(latitude: latitude, longitude: longitude)
         }
     }
-    public var backgroundGradientLayer: CAGradientLayer? {
-        guard let mildGreenColor = UIColor(named: "mildGreen"),
-            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
-        return gradientLayer
-    }
     private let userLocationManager = UserLocationManager()
     
     // MARK: - Initializer
@@ -106,6 +96,17 @@ final class RecommendationViewModel {
       
         let outfit = Outfit(components: recommendedClothingItems)
         recommendations = outfit.recommendationString
+    }
+    
+    public func setBackgroundGradient() -> CAGradientLayer? {
+        guard let mildGreenColor = UIColor(named: "cold"),
+            let warmOrangeColor = UIColor(named: "warm") else { return nil }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
+        return gradientLayer
     }
     
 }
