@@ -99,14 +99,33 @@ final class RecommendationViewModel {
     }
     
     public func setBackgroundGradient() -> CAGradientLayer? {
-        guard let mildGreenColor = UIColor(named: "cold"),
-            let warmOrangeColor = UIColor(named: "warm") else { return nil }
+        let colorRanges = getColorTemperatureRanges(from: highTemp)
+        
+        guard let color1 = UIColor(named: colorRanges.range1.rawValue),
+            let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
+        
+        let colors = [color1.cgColor, color2.cgColor]
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
+        gradientLayer.colors = colors
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
         return gradientLayer
+    }
+    
+    func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
+        var range1: TemperatureRanges
+        switch temp {
+        case -20...15: range1 = .veryCold
+        case 16...35: range1 = .cold
+        case 36...50: range1 = .sortaCold
+        case 51...67: range1 = .mild
+        case 68...77: range1 = .warm
+        case 77...110: range1 = .hot
+        default: range1 = .mild
+        }
+        let range2 = TemperatureRanges.mild
+        return (range1, range2)
     }
     
 }

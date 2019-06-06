@@ -26,7 +26,6 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = RecommendationViewModel(delegate: self)
-        setBackgroundColor()
     }
     
     // MARK: - Methods
@@ -70,6 +69,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetWeather(_ weather: String) {
         DispatchQueue.main.async {
             self.updateTempLabel(with: weather)
+            self.setBackgroundColor()
         }
     }
     
