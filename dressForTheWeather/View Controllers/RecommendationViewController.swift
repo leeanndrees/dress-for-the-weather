@@ -26,6 +26,7 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = RecommendationViewModel(delegate: self)
+        setBackgroundColor()
     }
     
     // MARK: - Methods
@@ -40,7 +41,11 @@ final class RecommendationViewController: UIViewController {
     
     private func setBackgroundColor() {
         
+<<<<<<< HEAD
         guard let gradientLayer = viewModel.setBackgroundGradient() else { return }
+=======
+        guard let gradientLayer = viewModel.backgroundGradientLayer else { return }
+>>>>>>> master
         
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
