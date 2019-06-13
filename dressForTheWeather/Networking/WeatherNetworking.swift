@@ -15,6 +15,7 @@ final class WeatherNetworking {
     
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
+    static let darkSkyKey = <#String#>
     
     // MARK: - Methods
     
@@ -22,7 +23,7 @@ final class WeatherNetworking {
     
         dataTask?.cancel()
         
-        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/e3c6c3f5254ee83b29cf829a4eee5c46/\(latitude),\(longitude)"),
+        guard let urlComponents = URLComponents(string: "https://api.darksky.net/forecast/\(darkSkyKey)/\(latitude),\(longitude)"),
             let url = urlComponents.url else {
             return
         }

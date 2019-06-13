@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 // MARK: - Delegate Protocol
 
@@ -24,9 +25,10 @@ final class RecommendationViewModel {
     weak var delegate: RecommendationViewDelegate?
     private var lowTemp: Double = 0
     private var highTemp: Double = 0
+    public var recommendedClothingItems: [ClothingItem] = []
     private var temperature: Double = 0 {
         didSet {
-            delegate?.didGetWeather(String("\(Int(lowTemp.rounded())) / \(Int(highTemp.rounded()))"))
+            delegate?.didGetWeather(String("\(Int(lowTemp.rounded()))º / \(Int(highTemp.rounded()))º"))
         }
     }
     private var recommendations: String = "" {
@@ -41,6 +43,16 @@ final class RecommendationViewModel {
             
             getTemperature(latitude: latitude, longitude: longitude)
         }
+    }
+    public var backgroundGradientLayer: CAGradientLayer? {
+        guard let mildGreenColor = UIColor(named: "mildGreen"),
+            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
+        return gradientLayer
     }
     private let userLocationManager = UserLocationManager()
     
@@ -80,6 +92,7 @@ final class RecommendationViewModel {
     
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
         let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
+        recommendedClothingItems = recommendedItems
         let outfit = Outfit(components: recommendedItems)
         recommendations = outfit.recommendations
     }

@@ -18,6 +18,7 @@ final class RecommendationViewController: UIViewController {
     
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var recommendationLabel: UILabel!
+    @IBOutlet var clothingCollectionView: ClothingCollectionView!
     
     // MARK: - Life Cycle
     
@@ -25,16 +26,25 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = RecommendationViewModel(delegate: self)
+        setBackgroundColor()
     }
     
     // MARK: - Methods
     
     private func updateTempLabel(with temperature: String) {
-        temperatureLabel.text = "Temperature: \(temperature)"
+        temperatureLabel.text = "\(temperature)"
     }
     
     private func updateRecommendationLabel(with recommendations: String) {
-        recommendationLabel.text = "Recommended outfit: \(recommendations)"
+        recommendationLabel.text = "\(recommendations)"
+    }
+    
+    private func setBackgroundColor() {
+        
+        guard let gradientLayer = viewModel.backgroundGradientLayer else { return }
+        
+        gradientLayer.frame = view.bounds
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
 }
@@ -46,13 +56,14 @@ extension RecommendationViewController: RecommendationViewDelegate {
         let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+//        present(alertController, animated: true)
     }
     
     
     func didGetRecommendations(_ recommendations: String) {
         DispatchQueue.main.async {
             self.updateRecommendationLabel(with: recommendations)
+            self.clothingCollectionView.reloadData()
         }
     }
     
@@ -62,4 +73,19 @@ extension RecommendationViewController: RecommendationViewDelegate {
         }
     }
     
+}
+
+extension RecommendationViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.recommendedClothingItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClothingCell", for: indexPath) as! ClothingCollectionViewCell
+        
+        cell.itemLabel.text = viewModel.recommendedClothingItems[indexPath.row].name
+        cell.itemImage.image = viewModel.recommendedClothingItems[indexPath.row].image
+        
+        return cell
+    }
 }
