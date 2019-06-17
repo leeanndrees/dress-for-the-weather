@@ -19,9 +19,9 @@ protocol RecommendationViewDelegate: AnyObject {
 }
 
 final class RecommendationViewModel {
-
+    
     // MARK: - Properties
-
+    
     weak var delegate: RecommendationViewDelegate?
     private var lowTemp: Double = 0
     private var highTemp: Double = 0
@@ -40,31 +40,31 @@ final class RecommendationViewModel {
         didSet {
             let latitude = location!.coordinate.latitude
             let longitude = location!.coordinate.longitude
-
+            
             getTemperature(latitude: latitude, longitude: longitude)
         }
     }
     
     private let userLocationManager = UserLocationManager()
-
+    
     // MARK: - Initializer
-
+    
     init(delegate: RecommendationViewDelegate) {
         self.delegate = delegate
         setup()
     }
-
+    
     // MARK: - Methods
-
+    
     private func setup() {
         userLocationManager.delegate = self
         getLocation()
     }
-
+    
     private func getLocation() {
         userLocationManager.getLocation()
     }
-
+    
     private func getTemperature(latitude: Double, longitude: Double) {
         WeatherNetworking.getWeatherFor(latitude: latitude, longitude: longitude, success: { weatherData in
             self.lowTemp = weatherData.daily.data[0].temperatureLow
@@ -76,50 +76,42 @@ final class RecommendationViewModel {
         }
         )
     }
-
+    
     private func selectClothingItems(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
         return items.filter { $0.tempRange.contains(lowTemp) || $0.tempRange.contains(highTemp) }
     }
-
+    
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
         let recommendedItems = selectClothingItems(for: lowTemp, highTemp: highTemp, from: allClothingItems)
-
+        
         recommendedClothingItems = []
-
+        
         BodyPlacement.allCases.forEach { currentPlacement in
             let itemsWithPlacement = recommendedItems.filter { $0.placement.contains(currentPlacement) }
-
+            
             guard let randomItem = itemsWithPlacement.randomElement(),
                 recommendedClothingItems.filter({ $0.placement.contains(currentPlacement) }).isEmpty else { return }
-
+            
             recommendedClothingItems.append(randomItem)
         }
-
+        
         let outfit = Outfit(components: recommendedClothingItems)
         recommendations = outfit.recommendationString
     }
-
+    
     public func updateBackgroundColors() -> [CGColor]? {
         let colorRanges = getColorTemperatureRanges(from: highTemp)
-
-        print(colorRanges.range1.rawValue, colorRanges.range2.rawValue)
         
         guard let color1 = UIColor(named: colorRanges.range1.rawValue),
-            let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
-
+              let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
+        
         let colors = [color1.cgColor, color2.cgColor]
-
         return colors
-//        guard let gradientLayer = backgroundGradientLayer else { return }
-
-//        gradientLayer.colors = colors
-//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-//        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
-//        return gradientLayer
     }
-
+    
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
-        var range1: TemperatureRanges { switch temp {
+        var range1: TemperatureRanges {
+            switch temp {
             case -20...15: return .veryCold
             case 16...35: return .cold
             case 36...50: return .sortaCold
@@ -136,17 +128,17 @@ final class RecommendationViewModel {
         let range2 = range1.nextTemp
         return (range1, range2)
     }
-
+    
 }
 
 extension RecommendationViewModel: UserLocationManagerDelegate {
     func didFail(errorDescription: String) {
         delegate?.didFailToGetWeather(errorDescription)
     }
-
-
+    
+    
     func didGetLocation() {
         location = userLocationManager.location
     }
-
+    
 }
