@@ -61,11 +61,11 @@ enum TemperatureRanges: String, CaseIterable {
     case cold
     case sortaCold
     case mild
-//    case sortaWarm
+    case sortaWarm
     case warm
-//    case veryWarm
+    case veryWarm
     case hot
-//    case veryHot
+    case veryHot
     
     var nextTemp: TemperatureRanges {
         switch self {
@@ -73,8 +73,11 @@ enum TemperatureRanges: String, CaseIterable {
         case .cold: return .veryCold
         case .sortaCold: return .cold
         case .mild: return .sortaCold
-        case .warm: return .mild
-        case .hot: return .warm
+        case .sortaWarm: return .mild
+        case .warm: return .sortaWarm
+        case .veryWarm: return .warm
+        case .hot: return .veryWarm
+        case .veryHot: return .hot
         }
     }
     
