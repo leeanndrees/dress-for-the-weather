@@ -13,6 +13,19 @@ final class RecommendationViewController: UIViewController {
     // MARK: - Properties
 
     private var viewModel: RecommendationViewModel!
+    
+    private var backgroundGradientLayer: CAGradientLayer?
+//    {
+//        guard let mildGreenColor = UIColor(named: "mildGreen"),
+//            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
+//
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
+//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+//        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
+//        gradientLayer.frame = view.bounds
+//        return gradientLayer
+//    }
 
     // MARK: - IBOutlets
 
@@ -26,7 +39,25 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel = RecommendationViewModel(delegate: self)
+        setupGradient()
         setBackgroundColor()
+        
+        
+//        let gradient = CAGradientLayer()
+//
+//        gradient.frame = view.bounds
+//        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+//        gradient.startPoint = CGPoint(x: 0, y: 0)
+//        gradient.endPoint = CGPoint(x: 1, y: 1)
+        
+        
+        
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            // this will be called after 10 seconds.
+//            self.backgroundGradientLayer?.colors = [UIColor.red.cgColor, UIColor.black.cgColor]
+//        }
+        
     }
 
     // MARK: - Methods
@@ -38,13 +69,24 @@ final class RecommendationViewController: UIViewController {
     private func updateRecommendationLabel(with recommendations: String) {
         recommendationLabel.text = "\(recommendations)"
     }
+    
+    private func setupGradient() {
+        backgroundGradientLayer = CAGradientLayer()
+        backgroundGradientLayer?.frame = view.bounds
+        backgroundGradientLayer?.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        backgroundGradientLayer?.startPoint = CGPoint(x: 0, y: 0)
+        backgroundGradientLayer?.endPoint = CGPoint(x: 1, y: 1)
+    }
+    
+    private func updateBackgroundColors() {
+        self.backgroundGradientLayer?.removeFromSuperlayer()
+        let colors = self.viewModel.updateBackgroundColors()
+        self.backgroundGradientLayer?.colors = colors
+    }
 
     private func setBackgroundColor() {
-
-        guard let gradientLayer = viewModel.setBackgroundGradient() else { return }
-
-        gradientLayer.frame = view.bounds
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        guard let gradient = backgroundGradientLayer else { return }
+        view.layer.insertSublayer(gradient, at: 0)
     }
 
 }
@@ -70,6 +112,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetWeather(_ weather: String) {
         DispatchQueue.main.async {
             self.updateTempLabel(with: weather)
+            self.updateBackgroundColors()
             self.setBackgroundColor()
         }
     }

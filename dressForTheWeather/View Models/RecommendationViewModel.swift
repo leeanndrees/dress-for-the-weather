@@ -44,16 +44,7 @@ final class RecommendationViewModel {
             getTemperature(latitude: latitude, longitude: longitude)
         }
     }
-    public var backgroundGradientLayer: CAGradientLayer? {
-        guard let mildGreenColor = UIColor(named: "mildGreen"),
-            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
-        return gradientLayer
-    }
+    
     private let userLocationManager = UserLocationManager()
 
     // MARK: - Initializer
@@ -108,33 +99,38 @@ final class RecommendationViewModel {
         recommendations = outfit.recommendationString
     }
 
-    public func setBackgroundGradient() -> CAGradientLayer? {
+    public func updateBackgroundColors() -> [CGColor]? {
         let colorRanges = getColorTemperatureRanges(from: highTemp)
 
+        print(colorRanges.range1.rawValue, colorRanges.range2.rawValue)
+        
         guard let color1 = UIColor(named: colorRanges.range1.rawValue),
             let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
 
         let colors = [color1.cgColor, color2.cgColor]
 
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = colors
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
-        return gradientLayer
+        return colors
+//        guard let gradientLayer = backgroundGradientLayer else { return }
+
+//        gradientLayer.colors = colors
+//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+//        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
+//        return gradientLayer
     }
 
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
-        var range1: TemperatureRanges
-        switch temp {
-        case -20...15: range1 = .veryCold
-        case 16...35: range1 = .cold
-        case 36...50: range1 = .sortaCold
-        case 51...67: range1 = .mild
-        case 68...77: range1 = .warm
-        case 77...110: range1 = .hot
-        default: range1 = .mild
+        var range1: TemperatureRanges { switch temp {
+            case -20...15: return .veryCold
+            case 16...35: return .cold
+            case 36...50: return .sortaCold
+            case 51...67: return .mild
+            case 68...77: return .warm
+            case 78...110: return .hot
+            default: return .mild
+            }
         }
-        let range2 = TemperatureRanges.mild
+        
+        let range2 = range1.nextTemp
         return (range1, range2)
     }
 

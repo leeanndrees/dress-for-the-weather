@@ -15,7 +15,7 @@ final class WeatherNetworking {
     
     static let weatherSession = URLSession(configuration: .default)
     static var dataTask: URLSessionDataTask?
-    static let darkSkyKey = <#String#>
+    static let darkSkyKey = "e3c6c3f5254ee83b29cf829a4eee5c46"
     
     // MARK: - Methods
     

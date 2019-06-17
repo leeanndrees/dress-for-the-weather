@@ -56,7 +56,7 @@ var allClothingItems = [
     skirt
 ]
 
-enum TemperatureRanges: String, Equatable {
+enum TemperatureRanges: String, CaseIterable {
     case veryCold
     case cold
     case sortaCold
@@ -66,4 +66,27 @@ enum TemperatureRanges: String, Equatable {
 //    case veryWarm
     case hot
 //    case veryHot
+    
+    var nextTemp: TemperatureRanges {
+        switch self {
+        case .veryCold: return .cold
+        case .cold: return .veryCold
+        case .sortaCold: return .cold
+        case .mild: return .sortaCold
+        case .warm: return .mild
+        case .hot: return .warm
+        }
+    }
+    
+//    func forTemp(temp: Double) -> TemperatureRanges {
+//        switch temp {
+//        case -20...15: return .veryCold
+//        case 16...35: return .cold
+//        case 36...50: return .sortaCold
+//        case 51...67: return .mild
+//        case 68...77: return .warm
+//        case 78...110: return .hot
+//        default: return .mild
+//        }
+//    }
 }
