@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TemperatureRanges: String, CaseIterable {
+enum TemperatureRange: String, CaseIterable {
     case veryCold
     case cold
     case sortaCold
@@ -19,7 +19,7 @@ enum TemperatureRanges: String, CaseIterable {
     case hot
     case veryHot
     
-    var nextTemp: TemperatureRanges {
+    var warmerTemperatureRange: TemperatureRange {
         switch self {
         case .veryCold: return .cold
         case .cold: return .veryCold

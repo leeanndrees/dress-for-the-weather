@@ -13,7 +13,13 @@ final class RecommendationViewController: UIViewController {
     // MARK: - Properties
 
     private var viewModel: RecommendationViewModel!
-    private var backgroundGradientLayer: CAGradientLayer?
+    private lazy var backgroundGradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        return gradientLayer
+    }()
 
     // MARK: - IBOutlets
 
@@ -27,8 +33,7 @@ final class RecommendationViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel = RecommendationViewModel(delegate: self)
-        setupGradient()
-        setBackgroundColor()
+        addBackgroundGradientLayer()
     }
 
     // MARK: - Methods
@@ -41,22 +46,14 @@ final class RecommendationViewController: UIViewController {
         recommendationLabel.text = "\(recommendations)"
     }
     
-    private func setupGradient() {
-        backgroundGradientLayer = CAGradientLayer()
-        backgroundGradientLayer?.frame = view.bounds
-        backgroundGradientLayer?.startPoint = CGPoint(x: 0, y: 0)
-        backgroundGradientLayer?.endPoint = CGPoint(x: 1, y: 1)
-    }
-    
-    private func updateBackgroundColors() {
-        self.backgroundGradientLayer?.removeFromSuperlayer()
-        let colors = self.viewModel.updateBackgroundColors()
-        self.backgroundGradientLayer?.colors = colors
+    private func updateBackgroundGradientLayer() {
+        backgroundGradientLayer.removeFromSuperlayer()
+        backgroundGradientLayer.colors = viewModel.gradientColors
+        addBackgroundGradientLayer()
     }
 
-    private func setBackgroundColor() {
-        guard let gradient = backgroundGradientLayer else { return }
-        view.layer.insertSublayer(gradient, at: 0)
+    private func addBackgroundGradientLayer() {
+        view.layer.insertSublayer(backgroundGradientLayer, at: 0)
     }
 
 }
@@ -68,7 +65,6 @@ extension RecommendationViewController: RecommendationViewDelegate {
         let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-//        present(alertController, animated: true)
     }
 
 
@@ -82,8 +78,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
     func didGetWeather(_ weather: String) {
         DispatchQueue.main.async {
             self.updateTempLabel(with: weather)
-            self.updateBackgroundColors()
-            self.setBackgroundColor()
+            self.updateBackgroundGradientLayer()
         }
     }
 

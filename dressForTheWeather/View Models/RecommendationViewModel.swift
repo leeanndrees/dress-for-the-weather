@@ -73,8 +73,7 @@ final class RecommendationViewModel {
             self.temperature = weatherData.currently.temperature
         }, failure: { error in
             self.delegate?.didFailToGetWeather(error.localizedDescription)
-        }
-        )
+        })
     }
     
     private func selectClothingItems(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
@@ -99,43 +98,51 @@ final class RecommendationViewModel {
         recommendations = outfit.recommendationString
     }
     
-    public func updateBackgroundColors() -> [CGColor]? {
-        let colorRanges = getColorTemperatureRanges(from: highTemp)
+    var gradientColors: [CGColor] {
+        let temperatureRanges = getTemperatureRange(from: highTemp) //colorRanges
         
-        guard let color1 = UIColor(named: colorRanges.range1.rawValue),
-              let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
+        guard let color1 = UIColor(named: "veryCold")?.cgColor,
+              let color2 = UIColor(named: "cold")?.cgColor else { return [] }
         
-        let colors = [color1.cgColor, color2.cgColor]
-        return colors
+        return [color1, color2]
     }
     
-    func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
-        var range1: TemperatureRanges {
+    func getTemperatureRange(from temp: Double) -> TemperatureRange {
+        var temperatureRange: TemperatureRange {
             switch temp {
-            case -20...15: return .veryCold
-            case 16...35: return .cold
-            case 36...50: return .sortaCold
-            case 51...64: return .mild
-            case 65...72: return .sortaWarm
-            case 68...77: return .warm
-            case 78...83: return .veryWarm
-            case 84...92: return .hot
-            case 93...120: return .veryHot
-            default: return .mild
+                case -20...15:
+                    return .veryCold
+                case 16...35:
+                    return .cold
+                case 36...50:
+                    return .sortaCold
+                case 51...64:
+                    return .mild
+                case 65...72:
+                    return .sortaWarm
+                case 68...77:
+                    return .warm
+                case 78...83:
+                    return .veryWarm
+                case 84...92:
+                    return .hot
+                case 93...120:
+                    return .veryHot
+                default:
+                    return .mild
             }
         }
         
-        let range2 = range1.nextTemp
-        return (range1, range2)
+        return temperatureRange
     }
     
 }
 
 extension RecommendationViewModel: UserLocationManagerDelegate {
+    
     func didFail(errorDescription: String) {
         delegate?.didFailToGetWeather(errorDescription)
     }
-    
     
     func didGetLocation() {
         location = userLocationManager.location
