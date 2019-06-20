@@ -99,12 +99,12 @@ final class RecommendationViewModel {
     }
     
     var gradientColors: [CGColor] {
-        let temperatureRanges = getTemperatureRange(from: highTemp) //colorRanges
+        let temperatureRange = getTemperatureRange(from: highTemp)
         
-        guard let color1 = UIColor(named: "veryCold")?.cgColor,
-              let color2 = UIColor(named: "cold")?.cgColor else { return [] }
+        guard let temperatureRangeColor = UIColor(named: temperatureRange.rawValue)?.cgColor,
+              let warmerTemperatureRangeColor = UIColor(named: temperatureRange.warmerTemperatureRange.rawValue)?.cgColor else { return [] }
         
-        return [color1, color2]
+        return [temperatureRangeColor, warmerTemperatureRangeColor]
     }
     
     func getTemperatureRange(from temp: Double) -> TemperatureRange {
