@@ -96,7 +96,7 @@ final class RecommendationViewModel {
         }
         
         let outfit = Outfit(components: recommendedClothingItems)
-        recommendations = outfit.recommendationString
+        recommendations = outfit.recommendationDescription
     }
     
     public func updateBackgroundColors() -> [CGColor]? {
@@ -110,21 +110,7 @@ final class RecommendationViewModel {
     }
     
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
-        var range1: TemperatureRanges {
-            switch temp {
-            case -20...15: return .veryCold
-            case 16...35: return .cold
-            case 36...50: return .sortaCold
-            case 51...64: return .mild
-            case 65...72: return .sortaWarm
-            case 68...77: return .warm
-            case 78...83: return .veryWarm
-            case 84...92: return .hot
-            case 93...120: return .veryHot
-            default: return .mild
-            }
-        }
-        
+        let range1 = TemperatureRanges.from(temp: temp)
         let range2 = range1.nextTemp
         return (range1, range2)
     }
