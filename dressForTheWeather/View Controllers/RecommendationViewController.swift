@@ -61,13 +61,14 @@ final class RecommendationViewController: UIViewController {
 
 }
 
-//// MARK: - Delegate Methods
+// MARK: - Delegate Methods
 
 extension RecommendationViewController: RecommendationViewDelegate {
     func didFailToGetWeather(_ description: String) {
         let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(cancelAction)
+//        TODO: fix this error alert so it only shows when needed:
 //        present(alertController, animated: true)
     }
 

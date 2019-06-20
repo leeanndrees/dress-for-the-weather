@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TemperatureRanges: String, CaseIterable {
+enum TemperatureRanges: String {
     case veryCold
     case cold
     case sortaCold
