@@ -13,9 +13,7 @@ class ClothingItem {
     var name: String
     var placement: [BodyPlacement]
     var tempRange: ClosedRange<Double>
-    private var fallbackImages: [UIImage?] = [UIImage(named: "sparkle1") ?? nil,
-                                             UIImage(named: "sparkle2") ?? nil,
-                                             UIImage(named: "sparkle3") ?? nil]
+    
     var image: UIImage? {
         guard let theImage = UIImage(named: name) else { return fallbackImage }
         return theImage
@@ -34,13 +32,4 @@ class ClothingItem {
         self.tempRange = tempRange
     }
     
-    func tooCold() {
-        let newLowerBound = tempRange.lowerBound + 5
-        self.tempRange = newLowerBound...self.tempRange.upperBound
-    }
-    
-    func tooHot() {
-        let newUpperBound = tempRange.upperBound - 5
-        self.tempRange = self.tempRange.lowerBound...newUpperBound
-    }
 }
