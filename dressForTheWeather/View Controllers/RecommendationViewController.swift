@@ -50,7 +50,7 @@ final class RecommendationViewController: UIViewController {
     
     private func updateBackgroundColors() {
         self.backgroundGradientLayer.removeFromSuperlayer()
-        let colors = self.viewModel.updateBackgroundColors()
+        let colors = self.viewModel.gradientColors
         self.backgroundGradientLayer.colors = colors
     }
 

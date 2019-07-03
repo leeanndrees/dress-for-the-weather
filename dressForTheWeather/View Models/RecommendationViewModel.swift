@@ -45,6 +45,15 @@ final class RecommendationViewModel {
         }
     }
     
+    var gradientColors: [CGColor] {
+        let temperatureRange = TemperatureRanges.from(temp: highTemp)
+        
+        guard let temperatureRangeColor = UIColor(named: temperatureRange.rawValue)?.cgColor,
+            let warmerTemperatureRangeColor = UIColor(named: temperatureRange.nextTemp.rawValue)?.cgColor else { return [] }
+        
+        return [temperatureRangeColor, warmerTemperatureRangeColor]
+    }
+    
     private let userLocationManager = UserLocationManager()
     
     // MARK: - Initializer
@@ -97,16 +106,6 @@ final class RecommendationViewModel {
         
         let outfit = Outfit(components: recommendedClothingItems)
         recommendations = outfit.recommendationDescription
-    }
-    
-    public func updateBackgroundColors() -> [CGColor]? {
-        let colorRanges = getColorTemperatureRanges(from: highTemp)
-        
-        guard let color1 = UIColor(named: colorRanges.range1.rawValue),
-              let color2 = UIColor(named: colorRanges.range2.rawValue) else { return nil }
-        
-        let colors = [color1.cgColor, color2.cgColor]
-        return colors
     }
     
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
