@@ -44,16 +44,16 @@ final class RecommendationViewModel {
             getTemperature(latitude: latitude, longitude: longitude)
         }
     }
-    public var backgroundGradientLayer: CAGradientLayer? {
-        guard let mildGreenColor = UIColor(named: "mildGreen"),
-            let warmOrangeColor = UIColor(named: "warmOrange") else { return nil }
+    
+    var gradientColors: [CGColor] {
+        let temperatureRange = TemperatureRanges.from(temp: highTemp)
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [mildGreenColor.cgColor, warmOrangeColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1.5)
-        return gradientLayer
+        guard let temperatureRangeColor = UIColor(named: temperatureRange.rawValue)?.cgColor,
+            let warmerTemperatureRangeColor = UIColor(named: temperatureRange.nextTemp.rawValue)?.cgColor else { return [] }
+        
+        return [temperatureRangeColor, warmerTemperatureRangeColor]
     }
+    
     private let userLocationManager = UserLocationManager()
     
     // MARK: - Initializer
@@ -86,15 +86,32 @@ final class RecommendationViewModel {
         )
     }
     
-    private func generateRecommendation(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
+    private func selectClothingItems(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
         return items.filter { $0.tempRange.contains(lowTemp) || $0.tempRange.contains(highTemp) }
     }
     
     private func setRecommendations(for lowTemp: Double, highTemp: Double) {
-        let recommendedItems = generateRecommendation(for: lowTemp, highTemp: highTemp, from: allClothingItems)
-        recommendedClothingItems = recommendedItems
-        let outfit = Outfit(components: recommendedItems)
-        recommendations = outfit.recommendations
+        let recommendedItems = selectClothingItems(for: lowTemp, highTemp: highTemp, from: allClothingItems)
+        
+        recommendedClothingItems = []
+        
+        BodyPlacement.allCases.forEach { currentPlacement in
+            let itemsWithPlacement = recommendedItems.filter { $0.placement.contains(currentPlacement) }
+            
+            guard let randomItem = itemsWithPlacement.randomElement(),
+                recommendedClothingItems.filter({ $0.placement.contains(currentPlacement) }).isEmpty else { return }
+            
+            recommendedClothingItems.append(randomItem)
+        }
+        
+        let outfit = Outfit(components: recommendedClothingItems)
+        recommendations = outfit.recommendationDescription
+    }
+    
+    func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {
+        let range1 = TemperatureRanges.from(temp: temp)
+        let range2 = range1.nextTemp
+        return (range1, range2)
     }
     
 }
