@@ -28,7 +28,7 @@ final class RecommendationViewController: UIViewController {
 
         viewModel = RecommendationViewModel(delegate: self)
         setupGradient()
-        setBackgroundColor()
+        addBackgroundGradientLayer()
     }
 
     // MARK: - Methods
@@ -54,7 +54,7 @@ final class RecommendationViewController: UIViewController {
         self.backgroundGradientLayer.colors = colors
     }
 
-    private func setBackgroundColor() {
+    private func addBackgroundGradientLayer() {
         view.layer.insertSublayer(backgroundGradientLayer, at: 0)
     }
 
@@ -83,7 +83,7 @@ extension RecommendationViewController: RecommendationViewDelegate {
         DispatchQueue.main.async {
             self.updateTempLabel(with: weather)
             self.updateBackgroundColors()
-            self.setBackgroundColor()
+            self.addBackgroundGradientLayer()
         }
     }
 
