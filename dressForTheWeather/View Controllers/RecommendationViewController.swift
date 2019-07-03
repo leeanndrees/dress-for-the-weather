@@ -13,8 +13,8 @@ final class RecommendationViewController: UIViewController {
     // MARK: - Properties
 
     private var viewModel: RecommendationViewModel!
-    private var backgroundGradientLayer: CAGradientLayer?
-
+    private lazy var backgroundGradientLayer = CAGradientLayer()
+    
     // MARK: - IBOutlets
 
     @IBOutlet var temperatureLabel: UILabel!
@@ -43,20 +43,19 @@ final class RecommendationViewController: UIViewController {
     
     private func setupGradient() {
         backgroundGradientLayer = CAGradientLayer()
-        backgroundGradientLayer?.frame = view.bounds
-        backgroundGradientLayer?.startPoint = CGPoint(x: 0, y: 0)
-        backgroundGradientLayer?.endPoint = CGPoint(x: 1, y: 1)
+        backgroundGradientLayer.frame = view.bounds
+        backgroundGradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        backgroundGradientLayer.endPoint = CGPoint(x: 1, y: 1)
     }
     
     private func updateBackgroundColors() {
-        self.backgroundGradientLayer?.removeFromSuperlayer()
+        self.backgroundGradientLayer.removeFromSuperlayer()
         let colors = self.viewModel.updateBackgroundColors()
-        self.backgroundGradientLayer?.colors = colors
+        self.backgroundGradientLayer.colors = colors
     }
 
     private func setBackgroundColor() {
-        guard let gradient = backgroundGradientLayer else { return }
-        view.layer.insertSublayer(gradient, at: 0)
+        view.layer.insertSublayer(backgroundGradientLayer, at: 0)
     }
 
 }
