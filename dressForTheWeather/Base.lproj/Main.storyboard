@@ -110,6 +110,7 @@
                     </view>
                     <connections>
                         <outlet property="clothingCollectionView" destination="grH-Cx-lyD" id="j5b-vz-VIG"/>
+                        <outlet property="locationButton" destination="vMm-hh-1md" id="yNH-9I-fg2"/>
                         <outlet property="recommendationLabel" destination="xKw-fP-K7w" id="NVy-xV-lo7"/>
                         <outlet property="temperatureLabel" destination="r1n-Og-tQn" id="bsy-71-EII"/>
                     </connections>

@@ -43,7 +43,7 @@ final class RecommendationViewModel {
             let longitude = location!.coordinate.longitude
             
             getTemperature(latitude: latitude, longitude: longitude)
-            getCityName(for: location!)
+            getLocationName(for: location!)
         }
     }
     
@@ -110,27 +110,26 @@ final class RecommendationViewModel {
         recommendations = outfit.recommendationDescription
     }
     
-    private func getCityName(for location: CLLocation) {
+    private func getLocationName(for location: CLLocation) {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            var placeMark: CLPlacemark!
-            placeMark = placemarks?[0]
+            guard let placeMark = placemarks?[0] else { return }
             
-            var cityStateLabelText: String {
-            switch (placeMark?.locality,
-                    placeMark?.administrativeArea,
-                    placeMark?.subAdministrativeArea,
-                    placeMark?.country) {
+            var locationLabel: String {
+            switch (placeMark.locality,
+                    placeMark.administrativeArea,
+                    placeMark.subAdministrativeArea,
+                    placeMark.country) {
             case let (cityName?, stateName?, _, _):
                 return "\(cityName), \(stateName)"
             case let (cityName?, _, countyName?, _):
                 return "\(cityName), \(countyName)"
             case let (cityName?, _, _, countryName?):
                 return "\(cityName), \(countryName)"
-            default: return ""
+            default: return "Somewhere 😎"
                 }
             }
-            self.delegate?.didGetLocation(cityStateLabelText)
+            self.delegate?.didGetLocation(locationLabel)
             })
     }
     
