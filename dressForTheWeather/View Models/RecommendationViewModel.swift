@@ -13,6 +13,7 @@ import UIKit
 // MARK: - Delegate Protocol
 
 protocol RecommendationViewDelegate: AnyObject {
+    func didGetLocation(_ city: String)
     func didGetWeather(_ weather: String)
     func didGetRecommendations(_ recommendations: String)
     func didFailToGetWeather(_ description: String)
@@ -42,6 +43,7 @@ final class RecommendationViewModel {
             let longitude = location!.coordinate.longitude
             
             getTemperature(latitude: latitude, longitude: longitude)
+            getCityName(for: location!)
         }
     }
     
@@ -106,6 +108,17 @@ final class RecommendationViewModel {
         
         let outfit = Outfit(components: recommendedClothingItems)
         recommendations = outfit.recommendationDescription
+    }
+    
+    private func getCityName(for location: CLLocation) {
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            var placeMark: CLPlacemark!
+            placeMark = placemarks?[0]
+            guard let city = placeMark?.locality, let state = placeMark?.administrativeArea else { return }
+            let cityStateLabelText = "\(city), \(state)"
+            self.delegate?.didGetLocation(cityStateLabelText)
+            })
     }
     
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {

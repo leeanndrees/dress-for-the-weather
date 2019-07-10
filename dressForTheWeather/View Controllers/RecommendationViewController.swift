@@ -20,7 +20,8 @@ final class RecommendationViewController: UIViewController {
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var recommendationLabel: UILabel!
     @IBOutlet var clothingCollectionView: ClothingCollectionView!
-
+    @IBOutlet var locationButton: UIButton!
+    
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -63,6 +64,10 @@ final class RecommendationViewController: UIViewController {
 // MARK: - Delegate Methods
 
 extension RecommendationViewController: RecommendationViewDelegate {
+    func didGetLocation(_ city: String) {
+        locationButton.setTitle(city, for: .normal)
+    }
+    
     func didFailToGetWeather(_ description: String) {
         let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
