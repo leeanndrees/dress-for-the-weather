@@ -115,8 +115,21 @@ final class RecommendationViewModel {
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             var placeMark: CLPlacemark!
             placeMark = placemarks?[0]
-            guard let city = placeMark?.locality, let state = placeMark?.administrativeArea else { return }
-            let cityStateLabelText = "\(city), \(state)"
+            
+            var cityStateLabelText: String {
+            switch (placeMark?.locality,
+                    placeMark?.administrativeArea,
+                    placeMark?.subAdministrativeArea,
+                    placeMark?.country) {
+            case let (cityName?, stateName?, _, _):
+                return "\(cityName), \(stateName)"
+            case let (cityName?, _, countyName?, _):
+                return "\(cityName), \(countyName)"
+            case let (cityName?, _, _, countryName?):
+                return "\(cityName), \(countryName)"
+            default: return ""
+                }
+            }
             self.delegate?.didGetLocation(cityStateLabelText)
             })
     }
