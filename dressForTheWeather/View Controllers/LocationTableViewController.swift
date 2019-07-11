@@ -10,6 +10,8 @@ import UIKit
 
 class LocationTableViewController: UITableViewController {
 
+    private let userLocationManager = UserLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +28,11 @@ class LocationTableViewController: UITableViewController {
         cell.textLabel?.text = locationName
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        userLocationManager.stopLocating()
+        
     }
 
 }
