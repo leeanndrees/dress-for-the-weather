@@ -23,6 +23,11 @@ final class RecommendationViewController: UIViewController {
     @IBOutlet var locationButton: UIButton!
     
     // MARK: - Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,11 @@ final class RecommendationViewController: UIViewController {
         viewModel = RecommendationViewModel(delegate: self)
         setupGradient()
         addBackgroundGradientLayer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     // MARK: - Methods

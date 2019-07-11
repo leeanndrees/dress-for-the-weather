@@ -21,6 +21,7 @@
 		435390232231837400399216 /* BodyPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390222231837400399216 /* BodyPlacement.swift */; };
 		4353902A2231A5A300399216 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390292231A5A300399216 /* RecommendationViewModel.swift */; };
 		435390542232E91400399216 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435390532232E91400399216 /* WeatherData.swift */; };
+		435D31FD22D66BA9005F7C05 /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D31FC22D66BA9005F7C05 /* LocationTableViewController.swift */; };
 		43A740952296F1A800880FED /* ClothingCollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A740942296F1A800880FED /* ClothingCollectionVIew.swift */; };
 		43A74097229724A400880FED /* ClothingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A74096229724A400880FED /* ClothingCollectionViewCell.swift */; };
 		43A7409F22983B1800880FED /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A7409A229839E300880FED /* Quicksand-Bold.ttf */; };
@@ -64,6 +65,7 @@
 		435390222231837400399216 /* BodyPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPlacement.swift; sourceTree = "<group>"; };
 		435390292231A5A300399216 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
 		435390532232E91400399216 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		435D31FC22D66BA9005F7C05 /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		43A740942296F1A800880FED /* ClothingCollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingCollectionVIew.swift; sourceTree = "<group>"; };
 		43A74096229724A400880FED /* ClothingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingCollectionViewCell.swift; sourceTree = "<group>"; };
 		43A7409A229839E300880FED /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				43A740942296F1A800880FED /* ClothingCollectionVIew.swift */,
 				43A74096229724A400880FED /* ClothingCollectionViewCell.swift */,
 				4342323B2215B89700304F6A /* RecommendationViewController.swift */,
+				435D31FC22D66BA9005F7C05 /* LocationTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				43539021223182AE00399216 /* TempClothingData.swift in Sources */,
 				435390542232E91400399216 /* WeatherData.swift in Sources */,
 				4342323C2215B89700304F6A /* RecommendationViewController.swift in Sources */,
+				435D31FD22D66BA9005F7C05 /* LocationTableViewController.swift in Sources */,
 				7345049B224D132200090FF8 /* WeatherNetworking.swift in Sources */,
 				43A740952296F1A800880FED /* ClothingCollectionVIew.swift in Sources */,
 				43A74097229724A400880FED /* ClothingCollectionViewCell.swift in Sources */,
