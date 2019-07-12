@@ -26,7 +26,7 @@ final class RecommendationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ final class RecommendationViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     // MARK: - Methods
@@ -60,13 +60,23 @@ final class RecommendationViewController: UIViewController {
     }
     
     private func updateBackgroundColors() {
-        self.backgroundGradientLayer.removeFromSuperlayer()
-        let colors = self.viewModel.gradientColors
-        self.backgroundGradientLayer.colors = colors
+        backgroundGradientLayer.removeFromSuperlayer()
+        backgroundGradientLayer.colors = viewModel.gradientColors
     }
 
     private func addBackgroundGradientLayer() {
         view.layer.insertSublayer(backgroundGradientLayer, at: 0)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "LocationTableViewController",
+            let locationTableViewController = segue.destination as? LocationTableViewController else { return }
+            
+        locationTableViewController.completion = { location in
+            DispatchQueue.main.async {
+                self.viewModel.getLocation(from: location)
+            }
+        }
     }
 
 }

@@ -8,13 +8,11 @@
 
 import UIKit
 
-class LocationTableViewController: UITableViewController {
+final class LocationTableViewController: UITableViewController {
 
     private let userLocationManager = UserLocationManager()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    var completion: ((String) -> (Void))?
 
     // MARK: - Table view data source
 
@@ -32,7 +30,11 @@ class LocationTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        userLocationManager.stopLocating()
+        let locationName = "\(storedLocationNames[indexPath.row].city), \(storedLocationNames[indexPath.row].state)"
         
+        dismiss(animated: true) {
+            self.completion?(locationName)
+        }
     }
 
 }

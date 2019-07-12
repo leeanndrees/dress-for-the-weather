@@ -84,8 +84,7 @@ final class RecommendationViewModel {
             self.temperature = weatherData.currently.temperature
         }, failure: { error in
             self.delegate?.didFailToGetWeather(error.localizedDescription)
-        }
-        )
+        })
     }
     
     private func selectClothingItems(for lowTemp: Double, highTemp: Double, from items: [ClothingItem]) -> [ClothingItem] {
@@ -113,7 +112,7 @@ final class RecommendationViewModel {
     private func getLocationName(for location: CLLocation) {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            guard let placeMark = placemarks?[0] else { return }
+            guard let placeMark = placemarks?.first else { return }
             
             var locationLabel: String {
             switch (placeMark.locality,
@@ -131,6 +130,12 @@ final class RecommendationViewModel {
             }
             self.delegate?.didGetLocation(locationLabel)
             })
+    }
+    
+    func getLocation(from address: String) {
+        userLocationManager.getLocationFrom(address: address) { location in
+            self.location = location
+        }
     }
     
     func getColorTemperatureRanges(from temp: Double) -> (range1: TemperatureRanges, range2: TemperatureRanges) {

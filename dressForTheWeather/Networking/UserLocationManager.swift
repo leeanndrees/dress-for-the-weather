@@ -28,11 +28,24 @@ class UserLocationManager: NSObject {
         return locationManager
     }()
     
-    public func getLocation() {
+    func getLocation() {
         locationManager.requestLocation()
     }
     
-    public func stopLocating() {
+    func getLocationFrom(address: String, completion: @escaping (CLLocation) -> Void) {
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            guard let placemarks = placemarks,
+                let location = placemarks.first?.location else {
+                    return
+            }
+            
+            completion(location)
+        }
+    }
+    
+    func stopLocating() {
         locationManager.stopUpdatingLocation()
     }
     

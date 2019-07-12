@@ -48,7 +48,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="F9u-tq-nYF" kind="show" id="A5R-9D-ZDn"/>
+                                    <segue destination="F9u-tq-nYF" kind="presentation" identifier="LocationTableViewController" id="A5R-9D-ZDn"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="grH-Cx-lyD" customClass="ClothingCollectionView">
@@ -123,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="962.31884057971024" y="26.116071428571427"/>
         </scene>
-        <!--Locations-->
+        <!--Select a Location-->
         <scene sceneID="o1H-CI-X2I">
             <objects>
-                <tableViewController id="F9u-tq-nYF" customClass="LocationTableViewController" customModule="dressForTheWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Select a Location" id="F9u-tq-nYF" customClass="LocationTableViewController" customModule="dressForTheWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HgL-9a-8jW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
